@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Jeffrey.Fall@Sun.COM">
+  <meta name="GENERATOR"
+ content="Mozilla/4.79C-CCK-MCD  [en] (X11; U; SunOS 5.9 sun4u) [Netscape]">
+</head>
+<body>
+<hr width="100%">
+<br>
+<small><small><font size="+3"><small><small>DHCP on Solaris Sparc</small></small></font>
+<br>
+<font size="+3"><small><small>Solaris 8</small></small></font>
+<br>
+<font size="+3"><small><small>Solaris 9</small></small></font></small></small>
+<p></p>
+<hr width="100%"><font size="+3"></font>
+<p><small><small><font size="+3"><small><small>Solaris 8 and 9</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>The netmasks area of the
+/etc/nsswitch.conf file has to
+be adjusted as shown here:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>#netmasks:&nbsp;&nbsp;
+nis [NOTFOUND=return] files</small></small></font>
+<br>
+<font size="+3"><small><small>netmasks:&nbsp;&nbsp; files nis
+[NOTFOUND=return]</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>Run the
+GUI&nbsp;interface to configure the DHCP&nbsp;server
+to act as a BOOTP server as shown here:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>/usr/sadm/admin/bin/dhcpmgr
+&amp;</small></small></font>
+</small></small></p>
+<p><img src="dhcpmgr1.png" height="233" width="350"><br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr2.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr3.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr4.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr5.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr6.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr7.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr8.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr9.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr10..png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr11.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr12.png" height="425" width="525"><br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr13.png" height="576" width="800"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr14.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr15.png" height="766" width="789"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr16.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr17.jpg" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr18.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr19.png" height="425" width="525"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr20.png" height="576" width="800"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr21.png" height="385" width="382"><br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr22.png" height="576" width="800"><br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><img src="dhcpmgr24.png" height="576" width="800"><br>
+<font size="+3"></font>&nbsp;<font size="+3"></font>
+</p>
+<p><img src="dhcpmgr25.png" height="515" width="544"><br>
+&nbsp;
+</p>
+<p><small><small><font size="+3"><small><small>After all this
+configuration is completed, the DHCP server
+will be serving BOOTP to the MAC addresses entered for each controller
+in the array.</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>You can verify it is
+running, or try to restart it.</small></small></font>
+</small></small></p>
+<p><img src="dhcpmgr26.png" height="576" width="800"><br>
+&nbsp;
+</p>
+<p><small><small><font size="+3"><small><small>Restart the array and
+ping the addresses.</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>If the ping comes back
+'alive', then the array's have
+successfully done a BOOTP via the Solaris DHCP&nbsp;server with the
+BOOTP
+option.</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>You can now manage this
+array with Element Manager by
+adding the array using the IP&nbsp;addresses just configured.</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>To start Element
+Manager, log in via the Sun Web Console.</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>https://&lt;your
+server&gt;:6789</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>For this example:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+3"><small><small>https://nsvr-359:6789</small></small></font>
+</small></small></p>
+<p><img src="webconsole2.png" height="791" width="1034"><br>
+&nbsp;
+</p>
+<p><img src="webconsole3.png" height="791" width="1034"><br>
+&nbsp;
+</p>
+<p><img src="webconsole4.png" height="791" width="1034"><br>
+&nbsp;
+</p>
+<p><img src="webconsole5.png" height="791" width="1034"><br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+<font size="+3"></font>&nbsp;
+<br>
+<font size="+3"></font>&nbsp;
+</p>
+</body>
+</html>

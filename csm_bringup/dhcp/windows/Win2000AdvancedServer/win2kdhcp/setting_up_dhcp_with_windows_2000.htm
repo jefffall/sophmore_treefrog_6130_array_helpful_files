@@ -1,0 +1,187 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Setting up DHCP with Windows 2000 Server</title>
+</head>
+
+<body>
+
+<p align="center"><u><b><font size="5">Setting up DHCP/BOOTP server from Windows 2000 Server
+for 6130 array IP addressing</font></b></u></p>
+<p align="center">&nbsp;</p>
+<ul>
+  <li>
+    <p align="left"><font size="4"><b>Before attempting this procedure, make
+    sure the array and Windows 2000 server are on the same subnet.</b></font></li>
+  <li>
+    <p align="left"><font size="4"><b>Make sure the two IP assigned to the array
+    controllers are not in conflict. Try to ping them now.</b></font></li>
+  <li>
+    <p align="left"><font size="4"><b>The array must be in BOOTP IP addressing
+    mode. (This is the default setting with a NEW array).</b></font></li>
+  <li>
+    <p align="left"><font size="4"><b>The Windows 2000 Server setup CD may be
+    needed.</b></font></li>
+</ul>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="left">Choose Control Panel and Administrative Tools</p>
+<p align="left"><img border="0" src="settin1.jpg" width="552" height="426"></p>
+<p align="left">Bring up Administrative Tools</p>
+<p align="left"><img border="0" src="settin2.jpg" width="552" height="426"></p>
+<p align="left">Bring up &quot;Configure Your Server&quot;</p>
+<p align="left"><img border="0" src="settin3.jpg" width="636" height="450"></p>
+<p align="left">Use the Networking drop down arrow on the right</p>
+<p align="left"><img border="0" src="settin4.jpg" width="636" height="450"></p>
+<p align="left">Select DHCP</p>
+<p align="left"><img border="0" src="settin5.jpg" width="636" height="450"></p>
+<p align="left">Start the Windows Component Wizard to add the DHCP componente</p>
+<p align="left"><img border="0" src="settin6.jpg" width="503" height="385"></p>
+<p align="left">Double Click on Networking Services</p>
+<p align="left"><img border="0" src="settin7.jpg" width="503" height="385"></p>
+<p align="left">Choose Dynamic Host Configuration Protocol - DHCP. Check the
+entry by clicking the square on the left</p>
+<p align="left"><img border="0" src="settin8.jpg" width="449" height="344"></p>
+<p align="left">Check the square and click on OK</p>
+<p align="left"><img border="0" src="settin9.jpg" width="449" height="344"></p>
+<p align="left">Go Next..</p>
+<p align="left"><img border="0" src="settin10.jpg" width="503" height="385"></p>
+<p align="left">If Terminal Services comes up, select Remote mode. This is a VNC
+like way to remotely manage your server. You can disable it later if needed.</p>
+<p align="left"><img border="0" src="settin11.jpg" width="503" height="385"></p>
+<p align="left">Select NEXT</p>
+<p align="left">If your server has obtained an address via DHCP from a DHCP
+server for it's own address, a warning will appear</p>
+<p align="left"><img border="0" src="settin12.jpg" width="632" height="126"></p>
+<p align="left">Accept the warning with OK</p>
+<p align="left">Local area connections will come up. Assign a Static IP address
+to the Server, or press OK to allow the Server to keep DHCP addressing for
+itself.-</p>
+<p align="left"><img border="0" src="settin13.jpg" width="367" height="430"></p>
+<p align="left">The Wizard will exit. Select Finish</p>
+<p align="left"><img border="0" src="settin14.jpg" width="503" height="385"></p>
+<p align="left">At this point, a DHCP server has been installed, but not
+configured.</p>
+<p align="left">Close the Windows 2000 Manage your Server launching box. Use the
+&quot;X&quot; in the upper right corner of the window.</p>
+<p align="left"><img border="0" src="settin15.jpg" width="636" height="450"></p>
+<p align="left">From Control Panel, open up Administrative Tools</p>
+<p align="left"><img border="0" src="settin16.jpg" width="552" height="426"></p>
+<p align="left">Select Computer Management and double click on it.</p>
+<p align="left">Select Services and Applications</p>
+<p align="left"><img border="0" src="settin17.jpg" width="638" height="452"></p>
+<p align="left">Select DHCP</p>
+<p align="left"><img border="0" src="settin18.jpg" width="638" height="452"></p>
+<p align="left">Add a Scope of addresses:</p>
+<p align="left"><img border="0" src="settin19.jpg" width="638" height="452"></p>
+<p align="left">Use Action and the drop down will say &quot;New Scope&quot;</p>
+<p align="left">The New Scope Wizard will appear</p>
+<p align="left"><img border="0" src="settin20.jpg" width="503" height="385"></p>
+<p align="left">Select Next</p>
+<p align="left"><img border="0" src="settin21.jpg" width="503" height="385"></p>
+<p align="left">Above, a Name for the Scope is entered and Next is selected.</p>
+<p align="left">Fill in the IP addresses and the Mask. Here, two IP addesses
+will be allowed to be assigned as an address for 170 and 171 will be released
+upon DHCP request</p>
+<p align="left"><img border="0" src="settin22.jpg" width="503" height="385"></p>
+<p align="left">Do not exclude any IP addresses:</p>
+<p align="left"><img border="0" src="settin23.jpg" width="503" height="385"></p>
+<p align="left">Next</p>
+<p align="left">Select the lease time. For just booting the array, the default
+of 8 days is fine.</p>
+<p align="left"><img border="0" src="settin24.jpg" width="503" height="385"></p>
+<p align="left">Add in the gateway for your subnet. (This is only an example
+below, yoru gateway will be different. by convention, many gateways end in 1.
+Ask you administrator)</p>
+<p align="left"><img border="0" src="settin25.jpg" width="503" height="385"></p>
+<p align="left">Next</p>
+<p align="left">The array will not need DNS to boot</p>
+<p align="left"><img border="0" src="settin26.jpg" width="503" height="385"></p>
+<p align="left">Next</p>
+<p align="left"><img border="0" src="settin27.jpg" width="503" height="385"></p>
+<p align="left">The array will not care about WINS as it does not use CIFS </p>
+<p align="left">Next</p>
+<p align="left"><img border="0" src="settin28.jpg" width="503" height="385"></p>
+<p align="left">Activate the scope</p>
+<p align="left">NEXT</p>
+<p align="left"><img border="0" src="settin29.jpg" width="503" height="385"></p>
+<p align="left">Finish the Wizard</p>
+<p align="left">FINISH</p>
+<p align="left"><img border="0" src="settin30.jpg" width="638" height="452"></p>
+<p align="left">Note the active scope</p>
+<p align="left">Under computer management right click the mouse on the SCOPE
+[192.168.0.0] 6130_IP scope</p>
+<p align="left">Select Properties</p>
+<p align="left"><img border="0" src="settin31.jpg" width="404" height="448"></p>
+<p align="left">Select the Advanced Tab</p>
+<p align="left">Setup BOOTP as shown below</p>
+<p align="left"><img border="0" src="settin32.jpg" width="404" height="448"></p>
+<p align="left">Make the lease unlimited and BOOTP only</p>
+<p align="left">APPLY</p>
+<p align="left">Then OK</p>
+<p align="left"><img border="0" src="settin33.jpg" width="404" height="448"></p>
+<p align="left">Now, make sure the MAC address of the array controllers is known
+to the Win2K DHCP server</p>
+<p align="left">Right click on Reservations:</p>
+<p align="left"><img border="0" src="settin34.jpg" width="638" height="452"></p>
+<p align="left">Enter the first IP address and the MAC address for controller A</p>
+<p align="left"><img border="0" src="settin35.jpg" width="404" height="448"></p>
+<p align="left">Press ADD.</p>
+<p align="left">The GUI adds this reserved address</p>
+<p align="left">Do the same for the B controller</p>
+<p align="left"><img border="0" src="settin36.jpg" width="404" height="448"></p>
+<p align="left">&nbsp;</p>
+<p align="left">Verify the controllers are added under reservations</p>
+<p align="left"><img border="0" src="settin37.jpg" width="638" height="452"></p>
+<p align="left">Deactivate, then activate scope by right clicking on Scope
+[192.168.0.0] 6130_IP</p>
+<p align="left"><img border="0" src="settin38.jpg" width="638" height="452"></p>
+<p align="left"><img border="0" src="settin39.jpg" width="639" height="119"></p>
+<p align="left">YES</p>
+<p align="left">Now activate the scope to ensure the BOOTP changes have been
+read in.</p>
+<p align="left"><img border="0" src="settin40.jpg" width="638" height="452"></p>
+<p align="left">Right click on Scope and select Activate</p>
+<p align="left"><img border="0" src="settin41.jpg" width="638" height="452"></p>
+<p align="left">The DHCP server should now be able to BOOTP the array network.</p>
+<p align="left">Power cycle the array and test the DHCP server for leases.</p>
+<p align="left">To see leases:</p>
+<p align="left"><img border="0" src="settin42.jpg" width="638" height="452"></p>
+<p align="left">If the array has successfully BOOTP from the DHCP server, the
+leases will show up as active.</p>
+<p align="left">Refreshing the list may be needed.</p>
+<p align="left">If these procedures do not yield results then check:</p>
+<ul>
+  <li>
+    <p align="left">Are the IP addresses allocated for BOOTP conflicting IP
+    addresses?</li>
+  <li>
+    <p align="left">Are the correct MAC address added to the DHCP server for the
+    array controllers?</li>
+  <li>
+    <p align="left">Is the DHCP server and array on the same subnet? Must be.</li>
+  <li>
+    <p align="left">Is the gateway configured correctly in the DHCP server? The
+    array controllers can gain a lease and an IP address but can't respond out
+    of the subnet for Element Manager and Storade access if the gateway is
+    misconfigured.</li>
+  <li>
+    <p align="left">Are the array controllers setup for BOOTP access? They are
+    as obtained from Sun, but if they have already been configured, chances are
+    they have a static IP address already. When moving an array, care must be
+    taken to transition the array IP address to the new IP on the new subnet
+    before moving the array, or setting the array to BOOTP.</li>
+  <li>
+    <p align="left">&nbsp;</li>
+</ul>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+
+</body>
+
+</html>

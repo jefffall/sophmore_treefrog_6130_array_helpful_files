@@ -1,0 +1,656 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<A name=1></a>C H A P T E R <b>11</b><br>
+Configuring Storage Volumes<br>
+See the following topics for information on storage volumes:<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+About Volumes<br>
+You manage the array's physical disks as a pool of storage space for creating<br>volumes. Volumes are "containers" into which applications, databases, and file<br>systems can put data. Volumes are created from the virtual disks in storage pools.<br>Based on your specifications, the array
+<font color="#FF0000"><b> automatically</b> (can also be done manually - one can
+select each disk from a list of disks)</font>
+<p>allocates the storage from<br>different disks to satisfy your volume configuration requirements.<br>
+There are several different types of volumes:<br>
+<br>
+<b>Standard volume. </b>A standard volume is a logical structure created on a storage<br>array for data storage. When you create a volume, initially it is a standard<br>volume. These are the typical volumes that users will access from data hosts.<br>
+<br>
+<font color="#FF0000">
+<b>Source volume</b>. A standard volume becomes a source volume when it<br>participates in a volume copy operation as the volume that contains the data to be<br>copied to a target volume. The source and target volumes maintain their<br>association through a copy pair. When the copy pair is removed, the source<br>volume reverts back to a standard volume.</font></p>
+<p><u><b><font color="#FF0000">Don't think we are offering Volume Copy. It is a
+premium feature also</font></b></u><br>
+<br>
+<font color="#FF0000">
+<b>Target volume</b>. A standard volume becomes a target volume when it participates<br>in a volume copy operation as the volume that receives data from a source<br>volume. The source and target volumes maintain their association through a copy<br>pair. When the copy pair is removed, the
+target volume reverts back to a standard<br>volume.</font></p>
+<p>&nbsp;</p>
+<p><u><b><font color="#FF0000">Ditto</font></b></u></p>
+<p><br>
+<b>88</b><br>
+</p>
+<hr>
+<A name=2></a>
+<p>&nbsp;</p>
+<p><font color="#FF0000"><b>Please see this link below about how to make a
+snapshot from the actual 6130 management software:</b></font></p>
+<p>http://nws-treefrog/sophomore/csm_bringup/snapshot/snapIndex.htm</p>
+<p>&nbsp;</p>
+<p><br>
+<b>Snapshot volume. </b>A snapshot volume is a point-in-time image of a standard<br>volume. The management software creates a snapshot volume when you use the<br>snapshot feature. When you delete a snapshot volume, the management software<br>also deletes its associated reserve volume.<br>
+<br>
+<b>Reserve volume</b>. A snapshot reserve volume is automatically created when you<br>create a snapshot volume. The snapshot reserve volume stores information about<br>the data that has changed since the volume snapshot was created. When you<br>delete a snapshot volume, the management software also deletes the reserve<br>volume.<br>
+You can create up to 256 volumes on each virtual disk. After you create the standard<br>volumes, assign a host or host group in your environment to one of the volumes.<br>Each host must be assigned an initiator. To see the current volumes, go to the<br>Volume Summary page, as described in <A href="volumess.html#5">Displaying Volume Information.</a><br>
+Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="snapshots.pdf">About Volume Snapshots</a><br>
+Planning Volumes<br>
+Creating a volume involves a number of tasks and decisions about a variety of<br>elements in your storage configuration. Therefore, before running the New Volume<br>wizard to create a new volume, plan your storage.<br>
+When you create a snapshot, be prepared to provide the following information:<br>
+<br>
+Volume name<br>
+Provide a unique name that identifies the volume.<br>
+<br>
+Volume capacity<br>
+Identify the capacity of the volume in either megabytes, gigabytes, or terabytes.<br>
+<br>
+The storage pool for this volume.<br>
+By default, the management software supplies a default storage pool, which uses<br>the default profile which implements RAID-5 storage characteristics that can be<br>used in the most common storage requirements. Other pools may have also been<br>configured. Before you run the New Volume wizard, check the list of configured<br>pools to see if one of the pools has the storage characteristics you want. If a<br>suitable pool does not exist, create a new pool using an existing or a new profile<br>before you run the New Volume wizard.<br>
+<b>89</b><br>
+6130 Array Online Help<br>
+</p>
+<hr>
+<A name=3></a><br>
+The way a virtual disk is selected<br>
+A volume can be created on a virtual disk as long as the RAID level, the number<br>of disks, and the disk type (either FC or SATA) of the virtual disk matches the<br>volume's pool profile. The virtual disk must also have enough capacity for the<br>volume. You must determine the way the software assigns the volume to a virtual<br>disk. The following options are available:
+<p>&nbsp;</p>
+<p><u><b><font color="#FF0000">I do not think we are offering SATA at RR.</font></b></u><br>
+<br>
+Automatic: The management software automatically selects the virtual disk on<br>which to create the volume from a list (provided by the array) of virtual disks<br>that match the necessary criteria.<br>
+<br>
+Manual: Enables you to select the virtual disks on which to create the volume<br>from the list of all available virtual disks.<br>
+<br>
+Create: Enables you to create a new virtual disk on which to create the volume.<br>
+<br>
+Whether or not to map the volume to a host or host group<br>
+Determine which hosts or host groups, if any, you want to have read/write access<br>to the volume by including the volume in a LUN map set.<br>
+To include the volume in a LUN map set, select Yes and the software prompts you<br>to select the host or host groups to map to the volume. Otherwise, select no.<br>
+By default the All host group allows all hosts on the network to have access to the<br>volumes. You can map the volume to this host group, however for enhanced<br>security you can create other host groups that include only selected hosts.<br>
+Use the following chart to plan the volume's storage characteristics.<br>
+<b>TABLE 11-1</b><br>
+Volume Storage Attributes<br>
+<b>Storage Attribute</b><br>
+<b>Value</b><br>
+RAID level<br>
+Segment size<br>
+Read-ahead mode<br>
+Profile<br>
+Pool<br>
+Number of drives<br>
+Disks<br>
+Virtual disk<br>
+Capacity<br>
+Host or Host Group<br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>90</b><br>
+</p>
+<hr>
+<A name=4></a><b>Note ­ </b>After you complete the New Volume wizard, ensure that for each host<br>mapped to a new volume or in
+<font color="#FF0000"> cluded i</font>n a host group that is mapped to the new<br>volume, that you have created an initiator and mapped it to that host.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+<br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+<br>
+<A href="initiators.pdf">Creating an Initiator</a><br>
+Managing Volumes<br>
+When you create a volume, the array allocates capacity to a storage pool. You will<br>most likely also map the volume to a host or host group to enable read/write access<br>to the volume. You can create volume snapshots, and you can extend the volume<br>capacity as necessary.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#5">Displaying Volume Information</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+<br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+<br>
+<A href="volumess.html#7">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="volumess.html#14">Unmapping a Volume From an Initiator</a><br>
+<br>
+<A href="snapshots.pdf">Planning a Volume Snapshot</a><br>
+<br>
+<A href="volumess.html#8">Expanding Volume Capacity</a><br>
+<br>
+<A href="snapshots.pdf">About Volume Snapshots</a><br>
+<b>91</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=5></a>Displaying Volume Information<br>
+You can display summary and detail information about existing storage volumes.<br>You can also display summary information about the mapped hosts and host<br>groups, snapshots, and virtual disks that are associated with each volume.<br>
+To display information on volumes:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+The Volume Summary page is displayed.<br>
+3. Click a volume name for detailed information on that volume.<br>
+The Volume Details page for the selected volume is displayed.<br>
+4. Go to Additional Information and click any item for more information associated<br>
+with the selected volume.<br>
+The Summary page for the selected item is displayed.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+<br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+Creating a Volume<br>
+For information on the factors you must consider in planning the volume's storage<br>characteristics, see <A href="volumess.html#2">Planning Volumes</a>.<br>
+When you run the New Volume wizard, you are prompted to do the following:<br>
+1. Define the volume name.<br>
+2. Assign the volume capacity.<br>
+3. Assign a storage pool with its storage characteristics.<br>
+4. Create or assign virtual disks from physical disks.<br>
+5. Map the volume to a LUN by selecting a host or host group name.<br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>92</b><br>
+<hr>
+<A name=6></a><b>Note ­ </b>You can also open a second window to create these elements while<br>performing the wizard.<br>
+To create a volume:<br>
+1. Click SE6130 Configuration Service &gt; Storage &gt; Logical &gt; Volumes &gt; New.<br>
+The New Volume wizard is displayed.<br>
+Follow the steps in the wizard. Click the Help button in the wizard for more<br>information.<br>
+<b>Note ­ </b>After you complete the New Volume wizard, ensure that for any host or host<br>group mapped to the new volume, that you have created an initiator and mapped it<br>to that host or host group.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#5">Displaying Volume Information</a><br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="volumess.html#8">Expanding Volume Capacity</a><br>
+Modifying a Volume<br>
+To modify a volume's name or description:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+The Volume Summary page is displayed.<br>
+3. Select the volume that you want to modify.<br>
+The Volume Details page for that volume is displayed.<br>
+4. Make the appropriate modifications, and click OK.<br>
+A message specifies that the volume was modified successfully.<br>
+<b>93</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=7></a>Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+Deleting a Volume<br>
+You cannot delete a volume that is mapped to a host or host group or that has<br>snapshots associated with it. If the selected volume is the only volume in the pool,<br>the pool is also deleted. If there are other volumes on the same pool, the storage of<br>the volume to delete is converted to a free extent for future volume creation.<br>
+To delete a volume:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+3. Select the check box for the volume that you want to delete. This enables the<br>
+Delete button.<br>
+4. Click Delete. The volume is removed from the Volumes Summary table.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+Mapping a Volume to a Host or Host Group<br>
+To map a volume to one or more hosts or host groups:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+The Volume Summary page is displayed.<br>
+3. Click the volume to which you want to map one or more hosts or host groups.<br>
+The Map button is enabled<br>
+4. Click Map.<br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>94</b><br>
+<hr>
+<A name=8></a>The Map Volume page appears with a list of available Hosts and Host Groups.<br>Use the quick filter to display only Hosts or Host Groups.<br>
+5. Select the Host or Host Group that you want to map to this volume.<br>
+A message specifies that the volume or volumes were mapped successfully.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="initiators.pdf">Creating an Initiator</a><br>
+<br>
+<A href="volumess.html#8">Unmapping a Volume from a Host or Host Group</a><br>
+Unmapping a Volume from a Host or Host Group<br>
+To unmap a volume from one or more hosts or host groups:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+3. Click the volume to which you want to map one or more hosts or host groups.<br>
+The Volume Details page is displayed and the Unmap button is enabled.<br>
+4. Click Unmap.<br>
+A message specifies that the selected objects were successfully deleted.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="initiators.pdf">Creating an Initiator</a><br>
+<br>
+<A href="volumess.html#7">Mapping a Volume to a Host or Host Group</a><br>
+Expanding Volume Capacity<br>
+You cannot expand the capacity of a volume that has snapshots associated with it.<br>
+To expand the capacity of a volume:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+The Volume Summary page is displayed.<br>
+<b>95</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=9></a>3. Click the Volume whose capacity you want to expand.<br>
+The Volume Details page is displayed.<br>
+4. Click Expand.<br>
+The Expand Volume page is displayed. It shows the current capacity.<br>
+5. Specify the volume capacity you want.<br>
+The capacity is the usable size of the volume for data.<br>
+6. Click OK.<br>
+A message specifies that dynamic volume expansion is in progress.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>96</b><br>
+<hr>
+<A name=10></a>Volume Summary Page<br>
+This page displays information about all storage volumes. Click an individual<br>volume name to see the volume details and additional information.<br>
+From this page you can:<br>
+<br>
+Create a new volume<br>
+<br>
+Map a volume to a host or host group<br>
+<br>
+Delete a volume<br>
+<br>
+View performance statistics for each volume on the array<br>
+You can filter the volume listings by pool, thereby showing only those volumes that<br>are associated with that pool.<br>
+<b>TABLE 11-2</b><br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The volume name.<br>
+Type<br>
+The volume types are:<br>· Standard - A standard volume.<br>· Snapshot - A snapshot volume contains the current volume<br>
+snapshots.<br>
+· Repository - A repository volume contains all exisiting volumes.<br>· Source - A source volume for a snapshot.<br>· Target - A target volume is where you want to save the snapshot.<br>
+Virtual Disk<br>
+The virtual disk that is associated with this volume.<br>
+Pool<br>
+The storage pool associated with this volume.<br>
+Capacity<br>
+The storage capacity that is allocated to this volume.<br>The capacity is the usable size of the volume for data. You might<br>need additional capacity for a snapshot reserve.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#5">Displaying Volume Information</a><br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+<b>97</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=11></a><br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+<br>
+<A href="volumess.html#7">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="volumess.html#14">Unmapping a Volume From an Initiator</a><br>
+<br>
+<A href="snapshots.pdf">Planning a Volume Snapshot</a><br>
+<br>
+<A href="volumess.html#8">Expanding Volume Capacity</a><br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>98</b><br>
+<hr>
+<A name=12></a>Volume Details Page<br>
+This page displays details about the selected volume. If you are a Storage user, you<br>can also perform additional actions from this page, depending on the volume type:<br>
+<b>TABLE 11-3</b><br>
+Additional Actions on Volumes<br>
+<b>Volume Type</b><br>
+<b>Standard</b><br>
+<b>Source</b><br>
+<b>Target</b><br>
+<b>Source/Target</b><br>
+<b>Repository</b><br>
+Map the volume to a<br>
+x<br>
+x<br>
+x<br>
+-<br>
+-<br>
+host or host group<br>
+Unmap the volume from<br>
+-<br>
+-<br>
+-<br>
+x<br>
+-<br>
+a host or host group<br>
+Create a volume<br>
+x<br>
+x<br>
+-<br>
+-<br>
+-<br>
+snapshot<br>
+Re-copy a volume copy<br>
+-<br>
+-<br>
+x<br>
+x<br>
+-<br>
+Copy a volume<br>
+x<br>
+x<br>
+x<br>
+x<br>
+-<br>
+Remove a copy pair<br>
+-<br>
+-<br>
+x<br>
+x<br>
+-<br>
+View performance<br>
+x<br>
+x<br>
+x<br>
+x<br>
+-<br>
+statistics<br>
+Delete the volume<br>
+x<br>
+x<br>
+x<br>
+x<br>
+-<br>
+<b>TABLE 11-4</b><br>
+Volume Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Capacity<br>
+The storage capacity that is allocated to this volume: KB, MB, GB<br>(default), TB, Blocks.<br>The capacity is the usable size of the volume for data. You might<br>need additional capacity for a snapshot reserve.<br>
+Virtual Disk<br>
+The number of virtual disks for this volume.<br>
+Pool<br>
+The storage pool associated with this volume.<br>
+RAID Level<br>
+0, 1, 3, 5<br>
+Segment Size<br>
+The size of the volume that is allocated to this storage pool.<br>
+Read Ahead<br>
+Whether the read cache is enabled: True or False.<br>
+Enabled<br>
+Write Cache Enabled<br>
+Whether the write cache is enabled: True or False.<br>
+<b>99</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=13></a><b>TABLE 11-4</b><br>
+Volume Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Status<br>
+Whether the volume is Online or Off line.<br>
+Condition<br>
+Whether the volume is Optimal or in an error condition.<br>
+State<br>
+The current state of the volume: Initializing, Ready.<br>
+Preferred Controller<br>
+The controller of choice when both controllers are operational.<br>
+Owning Controller<br>
+The controller for this array: A or B.<br>
+Modification<br>
+The priority as to whether this volume can or should be modified:<br>
+Priority<br>
+highest, high, medium, low, lowest<br>
+Capacity<br>
+The storage capacity that is allocated to this volume: KB, MB, GB<br>(default), TB, Blocks.<br>The capacity is the usable size of the volume for data. You might<br>need additional capacity for a snapshot reserve.<br>
+Virtual Disk<br>
+The number of virtual disks for this volume.<br>
+This table provides additional volume information. Click an item to see its details.<br>
+<b>TABLE 11-5</b><br>
+Storage Volume Additional Information<br>
+<b>Type</b><br>
+<b>Number of Items</b><br>
+Mappings<br>
+The number of mapped initiators for this volume.<br>
+Snapshots<br>
+The number of snapshots for this volume.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#5">Displaying Volume Information</a><br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+<br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+<br>
+<A href="volumess.html#7">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="volumess.html#14">Unmapping a Volume From an Initiator</a><br>
+<br>
+<A href="snapshots.pdf">Planning a Volume Snapshot</a><br>
+<br>
+<A href="volumess.html#8">Expanding Volume Capacity</a><br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>100</b><br>
+<hr>
+<A name=14></a>Volume Additional Information -<br>Mapping Summary Page<br>
+This page shows the initiators mapped to this volume.<br>
+<b>TABLE 11-6</b><br>
+Volume Additional Information - Mapping Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Initiator<br>
+The name of the mapped initiator.<br>
+Initiator WWN<br>
+The World Wide Name of the initiator.<br>
+Host<br>
+A data host - the se.rver and initiator providing data to be stored.<br>
+Host Group<br>
+A collection of host mapped to a volume.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+Unmapping a Volume From an Initiator<br>
+To unmap a volume from an initiator:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+3. Click the volume that you want to unmap from one or more initiators.<br>
+The Volume Details page is displayed. The Volume Additional Information table<br>shows the current mapped initiators.<br>
+4. Click Unmap.<br>
+The Mapping Volume page appears.<br>
+5. Select one or more hosts or host groups that you want to map to the volume.<br>
+6. Click Unmap.<br>
+Upon completion of the unmapping process, this message appears:<br>
+The requested initiators were successfully unmapped.<br>
+<b>101</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=15></a>Related Topics<br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<br>
+<A href="volumess.html#7">Mapping a Volume to a Host or Host Group</a><br>
+Volume Additional Information - Virtual<br>Disk Summary Page<br>
+This page shows the virtual disks that are associated with this volume.<br>
+<b>TABLE 11-7</b><br>
+Volumes Additional Information -Virtual Disk Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the virtual disk.<br>
+Host<br>
+The host associated with this virtual disk.<br>
+Storage Pool<br>
+The storage pool associated with this virtual disk.<br>
+Storage Profile<br>
+The storage profile associated with this virtual disk.<br>
+State<br>
+The current state of the virtual disk:<br>· In Use - The pool has one or more virtual disks associated with it.<br>· Not In Use - There is no virtual disk associated with the pool.<br>
+Total Capacity<br>
+The total memory capacity for this virtual disk.<br>
+Configured Capacity<br>
+The capacity that is configured for this virtual disk.<br>
+Available Capacity<br>
+The remaining capacity for this virtual disk.<br>
+Status<br>
+The current status of this virtual disk: OK, Unknown, Other, or<br>Degraded.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#5">Displaying Volume Information</a><br>
+<br>
+<A href="volumess.html#2">Planning Volumes</a><br>
+<br>
+<A href="volumess.html#5">Creating a Volume</a><br>
+<br>
+<A href="volumess.html#6">Modifying a Volume</a><br>
+<br>
+<A href="volumess.html#7">Deleting a Volume</a><br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>102</b><br>
+<hr>
+<A name=16></a><br>
+<A href="volumess.html#7">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="volumess.html#14">Unmapping a Volume From an Initiator</a><br>
+<br>
+<A href="snapshots.pdf">Planning a Volume Snapshot</a><br>
+<br>
+<A href="volumess.html#8">Expanding Volume Capacity</a><br>
+<b>103</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name=17></a>Volume Additional Information -<br>Snapshot Summary Page<br>
+This page shows the snapshots that are associated with this volume.<br>
+Additionally, this page allows you to resnap a volume.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The snapshot name.<br>
+Base Volume<br>
+The base volume associated with this snapshot.<br>
+Reserve Volume<br>
+The reserve volume associated with this snapshot.<br>
+Creation Date<br>
+The date this snapshot was created.<br>
+Percent Full<br>
+The percentage of the snapshot reserve volume that is being used.<br>
+WWN<br>
+The world-wide name of the snapshot.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+Chapter 11<br>
+Configuring Storage Volumes<br>
+<b>104</b><br>
+<hr>
+<A name=18></a>Deleting a Volume Snapshot<br>
+Additional Info - Do not review<br>
+To delete a volume snapshot:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+3. Click the volume from which you want to delete the snapshot.<br>
+The Volume Details page is displayed. The Volume Additional Information table<br>shows the current volume snapshots.<br>
+4. Click the Snapshots Additional Information. The Snapshot Summary page<br>
+appears.<br>
+5. Select the snapshot that you want to delete, which enables the Delete button.<br>
+6. Click Delete. Upon completion of the deletion, this message appears:<br>
+The requested snapshots were successfully deleted.<br>
+Related Topics<br>
+<br>
+<A href="volumess.html#1">About Volumes</a><br>
+<br>
+<A href="volumess.html#4">Managing Volumes</a><br>
+<b>105</b><br>
+6130 Array Online Help<br>
+<hr>
+<A name="outline"></a><h1>Document Outline</h1>
+<ul><li><A href="volumess.html#1">Configuring Storage Volumes</A>
+<ul><li><A href="volumess.html#1">About Volumes</A>
+<ul><li><A href="volumess.html#2">Related Topics</A>
+</ul><li><A href="volumess.html#2">Planning Volumes</A>
+<ul><li><A href="volumess.html#4">Related Topics</A>
+</ul><li><A href="volumess.html#4">Managing Volumes</A>
+<ul><li><A href="volumess.html#4">Related Topics</A>
+<li><A href="volumess.html#5">Displaying Volume Information</A>
+<ul><li><A href="volumess.html#5">Related Topics</A>
+</ul><li><A href="volumess.html#5">Creating a Volume</A>
+<ul><li><A href="volumess.html#6">Related Topics</A>
+</ul><li><A href="volumess.html#6">Modifying a Volume</A>
+<ul><li><A href="volumess.html#7">Related Topics</A>
+</ul><li><A href="volumess.html#7">Deleting a Volume</A>
+<ul><li><A href="volumess.html#7">Related Topics</A>
+</ul><li><A href="volumess.html#7">Mapping a Volume to a Host or Host Group</A>
+<ul><li><A href="volumess.html#8">Related Topics</A>
+</ul><li><A href="volumess.html#8">Unmapping a Volume from a Host or Host Group</A>
+<ul><li><A href="volumess.html#8">Related Topics</A>
+</ul><li><A href="volumess.html#8">Expanding Volume Capacity</A>
+<ul><li><A href="volumess.html#9">Related Topics</A>
+<li><A href="volumess.html#10">Related Topics</A>
+<li><A href="volumess.html#13">Related Topics</A>
+<li><A href="volumess.html#14">Related Topics</A>
+</ul><li><A href="volumess.html#14">Unmapping a Volume From an Initiator</A>
+<ul><li><A href="volumess.html#15">Related Topics</A>
+<li><A href="volumess.html#15">Related Topics</A>
+<li><A href="volumess.html#17">Related Topics</A>
+</ul><li><A href="volumess.html#18">Deleting a Volume Snapshot</A>
+<ul><li><A href="volumess.html#18">Related Topics</A>
+</ul></ul></ul></ul><hr>
+</BODY>
+</HTML>

@@ -1,0 +1,412 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Here is the pin out on the male connector on the rear of the 6130 array</title>
+</head>
+
+<body>
+
+<p align="center"><u><font size="4"><b>Connecting a laptop to a 6130 array for
+emergency restoration of tray operation</b></font></u></p>
+<p align="center">&nbsp;</p>
+<p>To restore a controller or reset the array password, the serial console port
+of each controller may be the only way.</p>
+<p>The objective of this tutorial is to:</p>
+<ol>
+  <li>Outline how to make a serial cable to connect a laptop PC to each
+    controller</li>
+  <li>Show how to initiate and log into each controller with Hyperterm or
+    similar</li>
+  <li>Execute shell commands to clear passwords, reset array, ect.</li>
+</ol>
+<hr>
+<p>The 6130 array has two serial ports for access to the VxWorks based shell and
+console. This is for Service use only.</p>
+<p>&nbsp;</p>
+<p><img border="0" src="SerialPortPicture.JPG" width="640" height="480"></p>
+<hr>
+<pre>Here is the pin out on the male connector on the rear of the 6130 array from official Engenio Documentation</pre>
+<pre>The serial interface (RS232) is provided through J8, a DB-9 connector.  These
+signals are identified in the table below.</pre>
+<pre>Pin No.  Signal  Signal Description
+1        DCD     Data Carrier Detect
+2        RXD*    Received Data
+3        TXD*    Transmitted Data
+4        DTR     Data Terminal Ready
+5        GND     Ground
+6        DSR     Data Set Ready
+7        RTS     Request To Send
+8        CTS     Clear To Send
+9         -      No Connection
+</pre>
+<hr>
+<p>Pinout for DB9 on the rear of a laptop PC</p>
+<table cellSpacing="0" cellPadding="0" width="96%" align="center">
+  <tbody>
+    <tr>
+      <td vAlign="top">
+        <h1><font size="3">DB9 serial (RS232) port. Pinout and signals for the
+        PC RS232 connector</font></h1>
+        <table cellSpacing="0" cellPadding="0" width="80%" align="center" border="0">
+          <tbody>
+            <tr>
+              <td>
+                <div align="right">
+                  <img alt="DB9 pin D-SUB male" src="conn_dsub9m.gif" width="83" height="65">
+                </div>
+              </td>
+              <td>DB9 pin D-SUB male</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div align="center">
+          <table cellSpacing="0" cellPadding="3" width="80%" align="center" border="0">
+            <tbody>
+              <tr>
+                <th>Pin</th>
+                <th>Name</th>
+                <th>Direction</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    1
+                  </div>
+                </td>
+                <td>CD</td>
+                <td>
+                  <div align="center">
+                    «—
+                  </div>
+                </td>
+                <td>Carrier Detect</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    2
+                  </div>
+                </td>
+                <td>RXD</td>
+                <td>
+                  <div align="center">
+                    «—
+                  </div>
+                </td>
+                <td>Receive Data</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    3
+                  </div>
+                </td>
+                <td>TXD</td>
+                <td>
+                  <div align="center">
+                    —»
+                  </div>
+                </td>
+                <td>Transmit Data</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    4
+                  </div>
+                </td>
+                <td>DTR</td>
+                <td>
+                  <div align="center">
+                    —»
+                  </div>
+                </td>
+                <td>Data Terminal Ready</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    5
+                  </div>
+                </td>
+                <td>GND</td>
+                <td>
+                  <div align="center">
+                  </div>
+                </td>
+                <td>System Ground</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    6
+                  </div>
+                </td>
+                <td>DSR</td>
+                <td>
+                  <div align="center">
+                    «—
+                  </div>
+                </td>
+                <td>Data Set Ready</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    7
+                  </div>
+                </td>
+                <td>RTS</td>
+                <td>
+                  <div align="center">
+                    —»
+                  </div>
+                </td>
+                <td>Request to Send</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    8
+                  </div>
+                </td>
+                <td>CTS</td>
+                <td>
+                  <div align="center">
+                    «—
+                  </div>
+                </td>
+                <td>Clear to Send</td>
+              </tr>
+              <tr>
+                <td>
+                  <div align="center">
+                    9
+                  </div>
+                </td>
+                <td>RI</td>
+                <td>
+                  <div align="center">
+                    «—
+                  </div>
+                </td>
+                <td>Ring Indicator</td>
+              </tr>
+            </tbody>
+          </table>
+          <address>
+            Note: Direction is DTE (Computer) relative DCE (Modem).
+          </address>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- end links -->
+<p>&nbsp;</p>
+<hr>
+<p>As can be clearly seen, the pinout of the 6130 array is exactly that of a
+PC's serial connector. A null modem cable will be needed to allow communication.</p>
+<hr>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>Connecting the laptop PC to the 6130 array:</b></p>
+<p>A suitable null modem cable must be constructed from two DB9 connectors. One
+will need two female DB9 connectors.</p>
+<h2><font size="3">RS232 DB9 NULL Modem Pinout.</font></h2>
+<p>Use when connecting two systems (e.g. PCs) (or PC to 6130 array) via their
+DB9 interfaces without a modem (i.e. back-to-back). </p>
+<table class="p-m-n" cellSpacing="0" cellPadding="4" align="center" border="1">
+  <tbody>
+    <tr class="g-h-s" vAlign="top">
+      <td width="50"><b>DB9</b></td>
+      <td width="80"><b>Signal</b></td>
+      <td width="50"><b>DB9</b></td>
+      <td width="80"><b>Signal</b></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>RD</td>
+      <td>3</td>
+      <td>TD</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>TD</td>
+      <td>2</td>
+      <td>RD</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>DTR</td>
+      <td>6,1</td>
+      <td>DSR, DCD</td>
+    </tr>
+    <tr>
+      <td>6,1</td>
+      <td>DSR, DCD</td>
+      <td>4</td>
+      <td>DTR</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>RTS</td>
+      <td>8</td>
+      <td>CTS</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>CTS</td>
+      <td>7</td>
+      <td>RTS</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>SGND</td>
+      <td>5</td>
+      <td>SGND</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>RI</td>
+      <td>9</td>
+      <td>RI</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>A wire with at least 8 conductors will be needed. Follow the diagram above.
+Match the color of the wires with the numbers above. It may be useful to print
+the table above and pencil in the color of the wire you plan to use for each
+pin.</p>
+<hr>
+<p>Bring up Hyperterm from Accessories and Communications</p>
+<p><img border="0" src="6130Se1.jpg" width="332" height="299"></p>
+<p>Select the COM port on your laptop. Probably COM1</p>
+<p><img border="0" src="6130Se2.jpg" width="296" height="300"></p>
+<p>Set the parameters as shown below:</p>
+<p><img border="0" src="6130Se3.jpg" width="344" height="407"></p>
+<p>The next step is to cause the controller's serial port to sync up with your
+laptop's hyperterm session. The array will autobaud when it receives the RS232
+break signal. The array will cycle through a number of baud rates. When you see
+readable text, you will be instructed to press the SPACE key. Do so within 5
+seconds.</p>
+<p>Ctrl-Break on Hyperterm is supposed to send the break sequence. But if that
+doesn't work, I think the break sequence is sometimes hex 0xfff3. If you copy
+the two characters ÿó to your clipboard and paste them, that may work also.</p>
+<p>Sending break is very dependent on the Windows OS running on the laptop.</p>
+<p>An alternative is to use a different terminal program for which the send
+break sequence is well understood.</p>
+<p>Once the space key is pressed, you will have to send one more break with
+CTRL-Break.</p>
+<p>Now, quickly, hit the ESC key.</p>
+<p>Type in the password to access the shell: infiniti</p>
+<p>Once you have the shell, you can perform many destructive commands. Care must
+be taken to limit risk when executing commands from the VxWorks shell.</p>
+<hr>
+<p>Here is an example from a Hyperterm session on WinXP (CTRL - BREAK worked on
+Hyperterm/XP via telnet)</p>
+<hr>
+<pre>
+
+Send &lt;BREAK&gt; for shell access or baud rate change
+
+</pre>
+<pre>Press within 5 seconds: &lt;ESC&gt; for SHELL, &lt;BREAK&gt; for baud rate 
+
+</pre>
+<pre>                                               
+                                       *****   
+                                @    **    **  
+                                    *       *  
+   @@  @@@@    @@@@@  @@  @@@@  @  * @@@@   *  
+  @  @ @   @  @   @  @  @ @   @ @ * @OOOO@  *  
+  @@@@ @   @  @@@@   @@@@ @   @ @ * @O OO@ *   
+  @    @   @   @     @    @   @ @   @OOOO@ *   
+   @@@ @   @  @       @@@ @   @ @ *  @@@@   *  
+               @@@                 *         * 
+              @   @                  **    *** 
+               @@@                     ******  
+                                               
+
+</pre>
+<pre>SHV RAID Controller
+Engenio Information Technologies, Inc.
+SHVRAID  Version 06.10.09.15
+Current Date and Time:  October 27, 2004  02:01:43</pre>
+<pre>Enter password to access shell:  </pre>
+<pre>Copyright Wind River Systems, Inc., 1984-2003
+Copyright Engenio Information Technologies, Inc., 2001-2004</pre>
+<pre>        VxWorks: VxWorks5.5.1
+         KERNEL: WIND version 2.6
+            BSP: 2.0/0
+  Creation date: Oct  8 2004  11:05:50
+            CPU: SHV 80321
+    Memory Size: 0x8000000 (128 MB)
+
+
+</pre>
+<pre>-&gt; help</pre>
+<pre>help                           Print this list
+ioHelp                         Print I/O utilities help info
+dbgHelp                        Print debugger help info
+nfsHelp                        Print nfs help info
+netHelp                        Print network help info
+spyHelp                        Print task histogrammer help info
+timexHelp                      Print execution timer help info
+h         [n]                  Print (or set) shell history
+i         [task]               Summary of tasks' TCBs
+ti        task                 Complete info on TCB for task
+sp        adr,args...          Spawn a task, pri=100, opt=0x19, stk=20000
+taskSpawn name,pri,opt,stk,adr,args... Spawn a task
+td        task                 Delete a task
+ts        task                 Suspend a task
+tr        task                 Resume a task
+d         [adr[,nunits[,width]]] Display memory
+m         adr[,width]          Modify memory
+mRegs     [reg[,task]]         Modify a task's registers interactively
+pc        [task]               Return task's program counter</pre>
+<pre>Type &lt;CR&gt; to continue, Q&lt;CR&gt; to stop: </pre>
+<pre>iam       &quot;user&quot;[,&quot;passwd&quot;]     Set user name and passwd
+whoami                         Print user name
+devs                           List devices
+ld        [syms[,noAbort][,&quot;name&quot;]] Load stdin, or file, into memory
+                               (syms = add symbols to table:
+                               -1 = none, 0 = globals, 1 = all)
+lkup      [&quot;substr&quot;]         List symbols in system symbol table
+lkAddr    address              List symbol table entries near address
+checkStack  [task]             List task stack sizes and usage
+printErrno  value              Print the name of a status value
+period    secs,adr,args... Spawn task to call function periodically
+repeat    n,adr,args...    Spawn task to call function n times (0=forever)
+version                        Print VxWorks version info, and boot line</pre>
+<pre>NOTE:  Arguments specifying 'task' can be either task ID or name.</pre>
+<pre>value = 1 = 0x1
+-&gt; </pre>
+<hr>
+<p><i><b><font size="4">Solving problems from the shell..</font></b></i></p>
+<p><i><b><font size="4">I need to:</font></b></i></p>
+<hr>
+<p><i><b><font size="4">1) Reset the array password:</font></b></i></p>
+<p><b><font size="4"><i>type in: </i><span style="background-color: #FFFFFF"><font color="#FF0000">clearSYMbolPassword</font></span></font></b></p>
+<p><b><font size="4">(preserve the case as above)</font></b></p>
+<hr>
+<p><i><b><font size="4">2) Unfail a controller (that is bricked!)</font></b></i></p>
+<p><b><font size="4"><i>type in: </i><font color="#FF0000">isp
+rdacMgrAltCtlResetRelease </font>(from the working controller in the pair)</font></b></p>
+<hr>
+<p><i><b><font size="4">3) Restore factory default configurations (in a hurry!)</font></b></i></p>
+<p><b><font size="4"><i>type in: </i><font color="#FF0000">sysWipeZero</font></font></b></p>
+<hr>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

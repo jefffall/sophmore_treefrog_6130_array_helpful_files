@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Resetting Treefrog Sophomore Array</title>
+  <meta name="author" content="Jeffrey.Fall@Sun.COM">
+</head>
+<body>
+<div style="text-align: center;"><span
+ style="text-decoration: underline;"><span style="font-weight: bold;"><big>How
+to reset 6130 Array Firmware<br>
+*also - how to install new array firmare*<br>
+<br>
+</big></span></span>
+<hr style="width: 100%; height: 2px;"><span
+ style="text-decoration: underline;"><span style="font-weight: bold;"><big><br>
+</big></span></span>
+<div style="text-align: left;">To reset the array's configuration to
+default, in lieu of relying on Storade support, there are two ways to
+reset the array:<br>
+<br>
+1) Serial Port<br>
+<br>
+2) Ethernet connection and using Santricity.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+To use the serial port, it is neccesary to connect the array to a
+serial terminal line.<br>
+<br>
+By far, the least painful way is to the lab's serial terminal network.
+Serial terminal networks are evident in all labs in Nwk16.<br>
+<br>
+The serial terminal may be connected via the overhead patch panel in
+the lab. The patch panel had blue jacks for ethernet on the top row.
+The lower row has orange jacks and these are the ones to use for serial
+connections.<br>
+<br>
+A yellow cable is used with RJ15 connectors on either end. Plug one end
+into the RJ45 on the patch panel. Plug the other end into a RJ45 to DB9
+conversion connector. Plug the DB9 connector into the DB9 serial
+connector on the A controller of the array.<br>
+<br>
+To attach to the array's serial port when it is physically connected,
+use a telent session from any Solaris or windows machine on SWAN.<br>
+<br>
+The telnet session is issued to a serial port server.<br>
+<br>
+The labs are setup with subnets. The patch panel where you connected
+the yellow serial port cable will have a subnet number. From this
+subnet number, one can derive the serial port server needed.<br>
+<br>
+If for example, you are in the 1730 marketing lab and you have attached
+your yellow serial cable to the overhead rack,you may see a "55"
+number. This means you are on ethernet subnet 55 and by convention,
+terminal server 55 is also used.<br>
+<br>
+So, you would telnet to nts-55a xxxx<br>
+<br>
+Where xxxx is the port you are connected to<br>
+<br>
+For example, telnet nts-55a 2119 would attach one to <br>
+<br>
+To figure out what the xxxx number is, consult this handy diagram on
+this link:<br>
+<br>
+http://webhome.ebay/nwses/Docs/NTS/Nwk16/index.html<br>
+<br>
+In the 1730 lab, say you attached to RJ45 jack #15 on panel EU5 of
+Subnet #55. <br>
+<br>
+Consulting the chart, you see that indeed, you need to use xxxx = 2119
+to access your array's controller.<br>
+<br>
+So, telnet nts-55a 2119 for this example. You will get to RJ45 jack #15
+on panel EU5<br>
+<br>
+You make the telnet connection and the array appears dead? Why is this?<br>
+<br>
+The array's serial port needs trained. It will autobaud to a line rate
+when provided with an ASCII break on the RS232 line. <br>
+To make this happen you can use a special sequence in telnet..<br>
+<br>
+hold down control key and then press ]<br>
+<br>
+You get:<br>
+<br>
+telnet&gt;<br>
+<br>
+At the telnet&gt; type send brk<br>
+<br>
+example:<br>
+<br>
+telnet&gt; send brk<br>
+<br>
+You may need to do this 10 times or more.<br>
+<br>
+Eventually, the array gets it.<br>
+You will see "Hit space to accept baud rate of 9600" or some such
+verbage.<br>
+You have 5 seconds to do this, so do it fast hit the SPACE.<br>
+<br>
+Now, send a break again..<br>
+<br>
+telnet&gt; send brk<br>
+<br>
+Now, quickly hit the escape key..<br>
+<br>
+The array will want a password<br>
+<br>
+it is: infiniti<br>
+<br>
+Congratulations! You are IN.<br>
+<br>
+To turn the array back to factory settings type in this destructive
+command<br>
+<br>
+sysWipeZero<br>
+<br>
+After this command&nbsp; is issued, the system may lose contact with
+the serial port as the baud rate may revert to a higher speed.<br>
+Any network connections will be lost. Any customized settings are lost,
+the IP addressing will return to first searching for BOOTP and then if
+no BOOTP server, will go to static IP<br>
+<br>
+One will have to go through the baud rate setting procedure above to
+regain serial communications with the array.<br>
+<br>
+-----<br>
+&nbsp;<br>
+Step 2 for resetting the array using Santricity.<br>
+<br>
+One can install Santricity from this link:<br>
+<br>
+http://unibrick/fw/2882/Yuma-1/8-4-04/solaris_Rev_8.zip<br>
+<br>
+The username is broken<br>
+the password is glass<br>
+<br>
+Save the .Z fiie onto the server you wish to use as a management server.<br>
+<br>
+Once the file is installed:<br>
+<br>
+unzip it like this:<br>
+<br>
+unzip solaris_Rev_8.zip<br>
+<br>
+# unzip solaris_Rev_8.zip<br>
+Archive:&nbsp; solaris_Rev_8.zip<br>
+&nbsp; inflating: SMclient-SOL-99.10.G0.30.pkg&nbsp; <br>
+&nbsp; inflating: SMutil-SOL-99.10.00.06.pkg&nbsp; <br>
+&nbsp; inflating: SMruntime-SOL-09.10.00.02.pkg&nbsp; <br>
+&nbsp; inflating: SMagent-SOL-99.10.00.07.pkg&nbsp; <br>
+&nbsp; inflating: FT_SUN_CSM100_E_SA_I_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: N2882-610843-010.dlp&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating: SNAP_06100310.dlp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9326.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9627.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+csb_SUN_0502.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+csb_SUN_0503.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+esm9709.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_J_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_S_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: Release notesR8.doc&nbsp;&nbsp;&nbsp;&nbsp; <br>
+# <br>
+<br>
+<br>
+It will decompress into packages installable by the pkgadd command. You
+must be root to perform these commands and to run Santricity.<br>
+<br>
+Install these packages as shown:<br>
+<br>
+pkgadd -d ./SMruntime-SOL-09.10.00.02.pkg <br>
+<br>
+pkgadd -d ./SMclient-SOL-99.10.G0.30.pkg<br>
+<br>
+If you don't have an IP address set for the array and you DO have a
+fibre channel connection to the array AND you have<br>
+the SIG build 9, Build 10 or Build 11 driver stack on the machine, then
+you can use in-band to allow Santricity<br>
+to communicate with the machine and reset it.<br>
+<br>
+For inband to work, install the Agent:<br>
+<br>
+pkgadd -d ./SMagent-SOL-99.10.00.07.pkg<br>
+<br>
+Now, you are ready to run Santricity.<br>
+<br>
+If you know the IP of the array, you will use the IP address to
+communicate with it.<br>
+If the IP address of the array is unknown, then you can use inband
+management to connect to the array and reset the configuration.<br>
+For both of these methods, Santricity is used. <br>
+<br>
+For inband - ie you forgot or lost the IP address or the array is not
+connected to a network, you must have the Agent<br>
+installed as above and a fibre channel card in the computer you are
+managing from and a physical fibre channel connection to the array from
+the HBA in the management computer.<br>
+<br>
+Before running Santricity, assure that:<br>
+<br>
+a) xhost +&nbsp;&nbsp; has been issued on the display you are wishing
+to use to manage the array.<br>
+b) setenv DISPLAY a.b.c.d:0.0&nbsp; where a.b.c.d is the IP address of
+the display machine. This is usually not neccessary if using telnet.<br>
+<br>
+To test it first, try typing the command "oclock" and see if the llittle<br>
+<br>
+To run Santricity:<br>
+<br>
+cd to /opt/SM9/client<br>
+<br>
+and<br>
+<br>
+./SMclient<br>
+<br>
+When Santricity comes up, you'll see s small splash screen.<br>
+Then, you will either see an array or a number or arrays or nothing.<br>
+<br>
+From this point, you can autodiscover arrays on your same subnet,<br>
+(ie all 6130's in the marketing lab on the 10.4.55.x subnet).<br>
+Or, you can add an array manually, by typing in the IP addresses of the
+A and B controllers respectively.<br>
+<br>
+Select the array to reset:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-1.png" title="" alt=""
+ style="width: 795px; height: 550px;"><br>
+<br>
+<br>
+The screen will open to the selected array specifics<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-2.png" title="" alt=""
+ style="width: 710px; height: 400px;"><br>
+<br>
+<br>
+Use the Advanced drop down and find the reset option<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-3.png" title="" alt=""
+ style="width: 710px; height: 400px;"><br>
+<br>
+<br>
+From Recovery drop<br>
+down, select RESET.<br>
+<br>
+From RESET select CONFIGURATION<br>
+<br>
+A confirmation screen is presented:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-4.png" title="" alt=""
+ style="width: 427px; height: 379px;"><br>
+<br>
+After this OK is pressed, the Santricity program will lose contact with
+the array.<br>
+<br>
+From the Marketing 1730 lab,&nbsp; Santricity is installed on the
+bigbang-25 server.<br>
+<br>
+Prepare your display by issuing 'xhost +' from a terminal window on
+your Sunray or remote server.<br>
+<br>
+<br>
+One can then telnet to bigbang-25 and log in as root.<br>
+Then, cd to /opt/SM9/client<br>
+and enter<br>
+./SMclient<br>
+<br>
+If Santricity does not come up, try the clock debug trick by typing
+oclock. If the round clock come up on your display, you are probably
+good to go with Santricity.<br>
+<br>
+Santricity will come up on your display terminal.<br>
+Care must be taken not to disrupt demos in progress. Any rebooting or
+management of this server or any server in the 1730 Marketing lab must
+be discussed with Allan Yen.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<br>
+<br>
+Upgrading firmware.<br>
+Note - Use Storade to update firmware whereever possible. There are
+also procedures in SIG Builds 9, 10, 11 to provide similar
+functionality as the instructions issued here for Santricity. As our
+customers will NOT be using Santricity, it is always good to use the
+tools we will be providing.<br>
+<br>
+The use of Santricity is a stop gap measure until the Sun tools are
+ready.<br>
+<br>
+The firmware files end in .dlp and are packaged in the .zip
+distribution with Santricity and also Nvsram files.<br>
+<br>
+Santricity is context sensitive to the extension of the file and will
+present the correct files when guided into the proper directory
+providing the firmware upgrade files.<br>
+<br>
+Here are sample files of interest:<br>
+<br>
+<br>
+&nbsp;
+<br>
+&nbsp; inflating: N2882-610843-010.dlp&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating: SNAP_06100310.dlp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9326.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9627.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+csb_SUN_0502.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+csb_SUN_0503.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+esm9709.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_J_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_S_no_alarm.dl&nbsp; <br>
+<br>
+With Santricity, select an array as above:<br>
+<br>
+Then:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-5.png" title="" alt=""
+ style="width: 795px; height: 550px;"><br>
+<br>
+<br>
+<br>
+<br>
+Not shown is DOWNLOAD then Controller Firmware resulting in this screen:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-6.png" title="" alt=""
+ style="width: 710px; height: 400px;"><br>
+<br>
+Browse to the area with the correct .dlp files for the firmware file
+and for the NVSRAM file.<br>
+It is a good idea to upgrade both in tandem. If they are not done
+together, the array can act unpredictable after the upgrade.<br>
+<br>
+Here is what a compatible firmware files looks like when we have
+selected a directory with compatible firmware files in it:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-7.png" title="" alt=""
+ style="width: 529px; height: 582px;"><br>
+<br>
+Select the file under FILES and read what is contains under File
+Information<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-8.png" title="" alt=""
+ style="width: 534px; height: 613px;"><br>
+<br>
+<br>
+Here is the firmware file selected<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-8a.png" title="" alt=""
+ style="width: 534px; height: 613px;"><br>
+<br>
+Select the firmware file:<br>
+<div style="text-align: left;">To reset the array's configuration to
+default, in lieu of relying on Storade support, there are two ways to
+reset the array:<br>
+<br>
+1) Serial Port<br>
+<br>
+2) Ethernet connection and using Santricity.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+To use the serial port, it is neccesary to connect the array to a
+serial terminal line.<br>
+<br>
+By far, the least painful way is to the lab's serial terminal network.
+Serial terminal networks are evident in all labs in Nwk16.<br>
+<br>
+The serial terminal may be connected via the overhead patch panel in
+the lab. The patch panel had blue jacks for ethernet on the top row.
+The lower row has orange jacks and these are the ones to use for serial
+connections.<br>
+<br>
+A yellow cable is used with RJ15 connectors on either end. Plug one end
+into the RJ45 on the patch panel. Plug the other end into a RJ45 to DB9
+conversion connector. Plug the DB9 connector into the DB9 serial
+connector on the A controller of the array.<br>
+<br>
+To attach to the array's serial port when it is physically connected,
+use a telent session from any Solaris or windows machine on SWAN.<br>
+<br>
+The telnet session is issued to a serial port server.<br>
+<br>
+The labs are setup with subnets. The patch panel where you connected
+the yellow serial port cable will have a subnet number. From this
+subnet number, one can derive the serial port server needed.<br>
+<br>
+If for example, you are in the 1730 marketing lab and you have attached
+your yellow serial cable to the overhead rack,you may see a "55"
+number. This means you are on ethernet subnet 55 and by convention,
+terminal server 55 is also used.<br>
+<br>
+So, you would telnet to nts-55a xxxx<br>
+<br>
+Where xxxx is the port you are connected to<br>
+<br>
+For example, telnet nts-55a 2119 would attach one to <br>
+<br>
+To figure out what the xxxx number is, consult this handy diagram on
+this link:<br>
+<br>
+http://webhome.ebay/nwses/Docs/NTS/Nwk16/index.html<br>
+<br>
+In the 1730 lab, say you attached to RJ45 jack #15 on panel EU5 of
+Subnet #55. <br>
+<br>
+Consulting the chart, you see that indeed, you need to use xxxx = 2119
+to access your array's controller.<br>
+<br>
+So, telnet nts-55a 2119 for this example. You will get to RJ45 jack #15
+on panel EU5<br>
+<br>
+You make the telnet connection and the array appears dead? Why is this?<br>
+<br>
+The array's serial port needs trained. It will autobaud to a line rate
+when provided with an ASCII break on the RS232 line. <br>
+To make this happen you can use a special sequence in telnet..<br>
+<br>
+hold down control key and then press ]<br>
+<br>
+You get:<br>
+<br>
+telnet&gt;<br>
+<br>
+At the telnet&gt; type send brk<br>
+<br>
+example:<br>
+<br>
+telnet&gt; send brk<br>
+<br>
+You may need to do this 10 times or more.<br>
+<br>
+Eventually, the array gets it.<br>
+You will see "Hit space to accept baud rate of 9600" or some such
+verbage.<br>
+You have 5 seconds to do this, so do it fast hit the SPACE.<br>
+<br>
+Now, send a break again..<br>
+<br>
+telnet&gt; send brk<br>
+<br>
+Now, quickly hit the escape key..<br>
+<br>
+The array will want a password<br>
+<br>
+it is: infiniti<br>
+<br>
+Congratulations! You are IN.<br>
+<br>
+To turn the array back to factory settings type in this destructive
+command<br>
+<br>
+sysWipeZero<br>
+<br>
+After this command&nbsp; is issued, the system may lose contact with
+the serial port as the baud rate may revert to a higher speed.<br>
+Any network connections will be lost. Any customized settings are lost,
+the IP addressing will return to first searching for BOOTP and then if
+no BOOTP server, will go to static IP<br>
+<br>
+One will have to go through the baud rate setting procedure above to
+regain serial communications with the array.<br>
+<br>
+-----<br>
+&nbsp;<br>
+Step 2 for resetting the array using Santricity.<br>
+<br>
+One can install Santricity from this link:<br>
+<br>
+http://unibrick/fw/2882/Yuma-1/8-4-04/solaris_Rev_8.zip<br>
+<br>
+The username is broken<br>
+the password is glass<br>
+<br>
+Save the .Z fiie onto the server you wish to use as a management server.<br>
+<br>
+Once the file is installed:<br>
+<br>
+unzip it like this:<br>
+<br>
+unzip solaris_Rev_8.zip<br>
+<br>
+# unzip solaris_Rev_8.zip<br>
+Archive:&nbsp; solaris_Rev_8.zip<br>
+&nbsp; inflating: SMclient-SOL-99.10.G0.30.pkg&nbsp; <br>
+&nbsp; inflating: SMutil-SOL-99.10.00.06.pkg&nbsp; <br>
+&nbsp; inflating: SMruntime-SOL-09.10.00.02.pkg&nbsp; <br>
+&nbsp; inflating: SMagent-SOL-99.10.00.07.pkg&nbsp; <br>
+&nbsp; inflating: FT_SUN_CSM100_E_SA_I_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: N2882-610843-010.dlp&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating: SNAP_06100310.dlp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9326.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9627.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+csb_SUN_0502.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+csb_SUN_0503.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+esm9709.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_J_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_S_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: Release notesR8.doc&nbsp;&nbsp;&nbsp;&nbsp; <br>
+# <br>
+<br>
+<br>
+It will decompress into packages installable by the pkgadd command. You
+must be root to perform these commands and to run Santricity.<br>
+<br>
+Install these packages as shown:<br>
+<br>
+pkgadd -d ./SMruntime-SOL-09.10.00.02.pkg <br>
+<br>
+pkgadd -d ./SMclient-SOL-99.10.G0.30.pkg<br>
+<br>
+If you don't have an IP address set for the array and you DO have a
+fibre channel connection to the array AND you have<br>
+the SIG build 9, Build 10 or Build 11 driver stack on the machine, then
+you can use in-band to allow Santricity<br>
+to communicate with the machine and reset it.<br>
+<br>
+For inband to work, install the Agent:<br>
+<br>
+pkgadd -d ./SMagent-SOL-99.10.00.07.pkg<br>
+<br>
+Now, you are ready to run Santricity.<br>
+<br>
+If you know the IP of the array, you will use the IP address to
+communicate with it.<br>
+If the IP address of the array is unknown, then you can use inband
+management to connect to the array and reset the configuration.<br>
+For both of these methods, Santricity is used. <br>
+<br>
+For inband - ie you forgot or lost the IP address or the array is not
+connected to a network, you must have the Agent<br>
+installed as above and a fibre channel card in the computer you are
+managing from and a physical fibre channel connection to the array from
+the HBA in the management computer.<br>
+<br>
+Before running Santricity, assure that:<br>
+<br>
+a) xhost +&nbsp;&nbsp; has been issued on the display you are wishing
+to use to manage the array.<br>
+b) setenv DISPLAY a.b.c.d:0.0&nbsp; where a.b.c.d is the IP address of
+the display machine. This is usually not neccessary if using telnet.<br>
+<br>
+To test it first, try typing the command "oclock" and see if the llittle<br>
+<br>
+To run Santricity:<br>
+<br>
+cd to /opt/SM9/client<br>
+<br>
+and<br>
+<br>
+./SMclient<br>
+<br>
+When Santricity comes up, you'll see s small splash screen.<br>
+Then, you will either see an array or a number or arrays or nothing.<br>
+<br>
+From this point, you can autodiscover arrays on your same subnet,<br>
+(ie all 6130's in the marketing lab on the 10.4.55.x subnet).<br>
+Or, you can add an array manually, by typing in the IP addresses of the
+A and B controllers respectively.<br>
+<br>
+Select the array to reset:<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-1.png"
+ title="" alt="" style="width: 795px; height: 550px;"><br>
+<br>
+<br>
+The screen will open to the selected array specifics<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-2.png"
+ title="" alt="" style="width: 710px; height: 400px;"><br>
+<br>
+<br>
+Use the Advanced drop down and find the reset option<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-3.png"
+ title="" alt="" style="width: 710px; height: 400px;"><br>
+<br>
+<br>
+From Recovery drop<br>
+down, select RESET.<br>
+<br>
+From RESET select CONFIGURATION<br>
+<br>
+A confirmation screen is presented:<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-4.png"
+ title="" alt="" style="width: 427px; height: 379px;"><br>
+<br>
+After this OK is pressed, the Santricity program will lose contact with
+the array.<br>
+<br>
+From the Marketing 1730 lab,&nbsp; Santricity is installed on the
+bigbang-25 server.<br>
+<br>
+Prepare your display by issuing 'xhost +' from a terminal window on
+your Sunray or remote server.<br>
+<br>
+<br>
+One can then telnet to bigbang-25 and log in as root.<br>
+Then, cd to /opt/SM9/client<br>
+and enter<br>
+./SMclient<br>
+<br>
+If Santricity does not come up, try the clock debug trick by typing
+oclock. If the round clock come up on your display, you are probably
+good to go with Santricity.<br>
+<br>
+Santricity will come up on your display terminal.<br>
+Care must be taken not to disrupt demos in progress. Any rebooting or
+management of this server or any server in the 1730 Marketing lab must
+be discussed with Allan Yen.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<br>
+<br>
+Upgrading firmware.<br>
+Note - Use Storade to update firmware whereever possible. There are
+also procedures in SIG Builds 9, 10, 11 to provide similar
+functionality as the instructions issued here for Santricity. As our
+customers will NOT be using Santricity, it is always good to use the
+tools we will be providing.<br>
+<br>
+The use of Santricity is a stop gap measure until the Sun tools are
+ready.<br>
+<br>
+The firmware files end in .dlp and are packaged in the .zip
+distribution with Santricity and also Nvsram files.<br>
+<br>
+Santricity is context sensitive to the extension of the file and will
+present the correct files when guided into the proper directory
+providing the firmware upgrade files.<br>
+<br>
+Here are sample files of interest:<br>
+<br>
+<br>
+&nbsp;
+<br>
+&nbsp; inflating: N2882-610843-010.dlp&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating: SNAP_06100310.dlp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9326.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+esm9627.s3r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating:
+csb_SUN_0502.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+csb_SUN_0503.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp; inflating:
+esm9709.dl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_J_no_alarm.dl&nbsp; <br>
+&nbsp; inflating: FT_SUN_CSM100_E_FC_S_no_alarm.dl&nbsp; <br>
+<br>
+With Santricity, select an array as above:<br>
+<br>
+Then:<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-5.png"
+ title="" alt="" style="width: 795px; height: 550px;"><br>
+<br>
+<br>
+<br>
+<br>
+Not shown is DOWNLOAD then Controller Firmware resulting in this screen:<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-6.png"
+ title="" alt="" style="width: 710px; height: 400px;"><br>
+<br>
+Browse to the area with the correct .dlp files for the firmware file
+and for the NVSRAM file.<br>
+It is a good idea to upgrade both in tandem. If they are not done
+together, the array can act unpredictable after the upgrade.<br>
+<br>
+Here is what a compatible firmware files looks like when we have
+selected a directory with compatible firmware files in it:<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-7.png"
+ title="" alt="" style="width: 529px; height: 582px;"><br>
+<br>
+Select the file under FILES and read what is contains under File
+Information<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-8.png"
+ title="" alt="" style="width: 534px; height: 613px;"><br>
+<br>
+<br>
+Here is the firmware file selected<br>
+<br>
+<img
+ src="shots/Screenshot-devmgr.dmv.MainScreen-8a.png"
+ title="" alt="" style="width: 534px; height: 613px;"><br>
+<br>
+Select the NVSRAM browser now:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-9.png" title="" alt=""
+ style="width: 534px; height: 613px;"><br>
+<br>
+Select the NVSRAM file:<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-9a.png" title="" alt=""
+ style="width: 534px; height: 613px;"><br>
+<br>
+<br>
+<br>
+Here is the final result of the files selected and selecting OK will
+begin the firmware upgrade process:<br>
+<br>
+<br>
+<img src="shots/Screenshot-devmgr.dmv.MainScreen-10.png" title="" alt=""
+ style="width: 529px; height: 582px;"><br>
+<br>
+Similar procedures are used to upgrade the Expansion tray firmware and
+drive firmware.<br>
+<br>
+- end -<br>
+<br>
+</div>
+<br>
+<br>
+</div>
+<span style="text-decoration: underline;"><span
+ style="font-weight: bold;"></span></span></div>
+</body>
+</html>

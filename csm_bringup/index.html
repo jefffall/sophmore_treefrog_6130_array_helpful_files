@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <meta name="author" content="Jeffrey.Fall@Sun.COM">
+  <meta name="GENERATOR"
+ content="Mozilla/4.79C-CCK-MCD  [en] (X11; U; SunOS 5.9 sun4u) [Netscape]">
+  <title>CSM Bringup - Learn how to get a Sophomore CSM running from
+dirt.</title>
+</head>
+<body>
+<div style="text-align: center;"><span style="font-weight: bold;"><font
+ size="+1">Treefrog
+Sophomore UniBrick/CSM bringup page<br>
+<br>
+</font></span>
+<div style="text-align: left;">
+<hr style="width: 100%; height: 2px;"></div>
+<span style="font-weight: bold;"><font size="+1"></font></span>
+<div style="text-align: left;"><a
+ href="6130SerialPort/6130SerialPortConsole.htm"><span
+ style="font-weight: bold;">Connecting a windows laptop to the console
+serial port on 6130 array. Clearing array password, unbrick controller.</span></a><br>
+<span style="font-weight: bold;"><font size="+1"></font></span></div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><a
+ href="resetting6130Array/Resetting_Treefrog_Sophomore_Array.html"><span
+ style="font-weight: bold;">Resetting 6130 array to factory defaults
+using serial port and Santricity. Upgrading array firmware(s) using
+Santricity.</span></a><br>
+</div>
+<span style="font-weight: bold;"><font size="+1">
+</font></span>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><span style="font-weight: bold;"><a
+ href="howToRunFCanalyzer/GTTraceViewInstall.exe">Finisar GT trace
+viewer (may not work for GTX traces) [download here]</a><br>
+<br>
+<a href="howToRunFCanalyzer/GTX%204.2-April%2023-2003.zip">Finisar GTX
+software distribution from Finisar. Contains GTX trace viewer and all
+components to restore analyzer [[download here]</a></span></div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><a
+ href="AmberBootProblemTraces/AmberBootTraces.tar.Z"><span
+ style="font-weight: bold;">Amber Card boot problem traces. Initial try
+w/ 3500 server. Download
+from this link. Tarball and compressed.</span></a><br>
+<br>
+<a href="AmberBootProblemTraces/RobertLiuTraces9.14.04AmberP2P.tar.Z"><span
+ style="font-weight: bold;">*New Amber Card boot problem. Traces by
+Robert Liu. Point to Point connection Starcat server Two Amber cards</span></a><br>
+<span style="font-weight: bold;"><font size="+1"></font></span></div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><a href="B9/SIG_Build_9_install.html"><span
+ style="font-weight: bold;">SIG Build 9 install on Solaris 9 server -
+installer's perspective</span></a><br>
+<span style="font-weight: bold;"><font size="+1"></font></span></div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><a href="jbd/index.html"><span
+ style="font-weight: bold;">6130 Doc suite review as requested by John
+Bouchard and Susan Lemish</span></a><span style="font-weight: bold;"><font
+ size="+1">
+</font></span></div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><a
+ href="performance/iozone/performance.htm"><span
+ style="font-weight: bold;">I/O Performance graphing with iozone</span></a><span
+ style="font-weight: bold;"><font size="+1">
+</font></span></div>
+<div style="text-align: left;">
+<hr style="width: 100%; height: 2px;"><br>
+<a href="howToRunFCanalyzer/UseFinisarFCanalyzer.htm"><span
+ style="font-weight: bold;">How to use Finisar Fibre Channel analyzer</span></a><br>
+</div>
+<span style="font-weight: bold; text-decoration: underline;"><br>
+</span>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left; font-weight: bold;"><a
+ href="snapshot/snapIndex.htm">How to create a snapshot
+using Sun Storedge 6130 Configuration Service<br>
+</a></div>
+<hr width="100%">
+<br>
+<div style="text-align: left; font-weight: bold;"><a
+ href="dhcp/index.html">Initial
+setup of the IP addresses of the controllers in the array</a></div>
+<p>
+</p>
+<div style="text-align: justify;">
+<hr style="width: 100%; height: 2px;"><a href="storade2.3/index.html"
+ style="font-weight: bold;">Test
+Drive Storade 2.3 on a CSM via nsvr-359</a>
+<br>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;"><a
+ href="gnuSWonSolaris/installGnu.html">Install
+GNU SW on an internal Sun Solaris Server from the internet</a></span>
+<br>
+<hr style="width: 100%; height: 2px;">
+<p>This page will cover how to bring up a CSM out of the box. This
+experience
+would be similar to that of an unexperienced field engineer tasked with
+installing the CSM onto a live customer's system.&nbsp; Typically, the
+Unibrick will arrive to a customer site and a field engineer will
+unpack
+it and move it to a location specified by the customer.&nbsp; Now what?
+</p>
+<p>Here is where real life (but in a lab), experience is applied to
+bring
+up the CSM enough allow the customer to see storage on-line.
+</p>
+<p>What steps will we follow?
+</p>
+<p>Here they are:
+<br>
+&nbsp;
+</p>
+<ul>
+  <li>Unpack CSM - prepare CSM for initial power up. May involve
+removing
+special
+bolts and fixtures needed to hold internals in a rigid shippable state
+to avoid shipment damage.</li>
+  <li>Power UP CSM - check initial working status</li>
+  <li>Check firmware installed on CSM to make sure it is the correct
+version
+matching the desired Solaris MPxIO driver stack.</li>
+  <li>Check firmware installed on customer's HBA cards on server. Make
+sure
+the
+firmware is at acceptable levels and upgrade if needed.</li>
+  <li>Check base level of customer's Solaris installation to make sure
+basic
+acceptable patch levels are installed as per Sunsolve.</li>
+  <li> <a href="mpxio/index.html">Check SAN driver stack to make sure
+MPxIO is
+installed and enabled</a></li>
+  <li> <a href="chkFChba/index.html">Check Fibre Channel HBA's for
+health
+and
+possible attached Fibre Channel Storage devices</a></li>
+  <li>Check FC switch to make sure domains and zoning are proper for
+this
+site.</li>
+  <li>Check if FC switch can see WWN's on Unibrick/CSM</li>
+  <li>Check if customer server (Solaris) can see WWN's from CSM through
+the
+switch</li>
+  <li>Create storage LUN(s) on the CSM/brick using TBD software or web
+interface.</li>
+  <li>Create proper /dev entries for desired storage</li>
+  <li>Format the storage for desired volume using newfs or similar tool
+to
+make
+a filesystem.</li>
+  <li>Mount the storage and test viability.</li>
+  <li>Test the Mulitplexing MpxIO by introducing a fault and observing
+error
+logs to make sure the injected I/O was handled properly.</li>
+  <li>Install and configure high level storage management software
+(capable
+of
+performing most of these tasks automatically).</li>
+</ul>
+<hr style="width: 100%; height: 2px;">
+<br>
+<span style="font-weight: bold; text-decoration: underline;"></span></div>
+</div>
+</body>
+</html>

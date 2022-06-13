@@ -1,0 +1,588 @@
+# patchadd /var/spool/patch/113046-01
+
+Checking installed patches...
+Patch 113046-01 has already been applied.
+See patchadd(1M) for instructions.
+
+Patchadd is terminating.
+# atchadd /var/spool/patch/113049-01
+atchadd: not found
+# patchadd atchadd /var/spool/patch/113049-01 /var/spool/patch/113049-01
+
+Patch directory atchadd does not exist.
+
+Usage: patchadd [-u] [-d] [-B <backout_dir>]
+                    [-S <service> | -R <client_root_path>]
+                    [-C <net_install_image>] <patch>
+
+       patchadd [-u] [-d] [-B <backout_dir>]
+                    [-S <service> | -R <client_root_path>] 
+                    [-C <net_install_image>]
+                    -M patch_dir patch_id... | patch_dir patch_list
+
+       patchadd [-S <service> | -R <client_root_path>] 
+                    [-C <net_install_image>] -p
+
+Patchadd is terminating.
+# patchadd /var/spool/patch/113049-01
+
+Checking installed patches...
+Patch 113049-01 has already been applied.
+See patchadd(1M) for instructions.
+
+Patchadd is terminating.
+# pwd
+/var/spool/patch
+# ls
+113046-01      113046-01.zip  113049-01      113049-01.zip
+# wpd
+wpd: not found
+# cd ..
+# ls
+clientmqueue  locks         mqueue        pkg           samba         uucppublic
+cron          lp            patch         print         uucp
+# cd ..
+# cd /export/home/vnc
+# ls
+bin                    mpxiosw                nsmail                 patches.tar
+local.login            #Noted Thu_16:39:40#   oz                     README.txt
+local.profile          ##Noted Thu_16:39:40#  patches
+# cd mpxiosw
+# ls
+sfk_6.5.2           sfk_s9_6.5.2.tar.Z
+# cd sfk_6.5.2
+# ls
+EC.6.5.2                  Install_order             man                       qpatches
+EC_lv15b01                ls                        packages                  SAN_4.5_install_it.6.5.2
+# cd qpatches
+# ls
+Q959650-02  Q959651-02  Q959652-03  Q959653-01  Q959654-02  Q959655-02  Q959656-01  Q959657-01  Q959658-01  Q959659-02
+# patchadd ./Q959651-02
+
+Checking installed patches...
+ERROR: This patch is incompatible with patch Q959631-09
+which has already been applied to the system. To install this patch,
+first remove the incompatible patch Q959631-09 using patchrm(1M).
+
+Patchadd is terminating.
+# patchrm Q959631-09
+
+Checking installed patches...
+
+Patch Q959631-09 is required to be installed by patch 113044-04
+it cannot be backed out until patch 113044-04 is backed out.
+
+Patchrm is terminating.
+# patchrm 113044-04
+
+Checking installed patches...
+
+Backing out patch 113044-04...
+
+Executing postbackout script...
+Patch 113044-04 has been backed out.
+
+# 
+# pwd
+/export/home/vnc/mpxiosw/sfk_6.5.2/qpatches
+# cd ..
+# ls
+EC.6.5.2                  Install_order             man                       qpatches
+EC_lv15b01                ls                        packages                  SAN_4.5_install_it.6.5.2
+# cd Install_order
+Install_order: not a directory
+# ls
+EC.6.5.2                  Install_order             man                       qpatches
+EC_lv15b01                ls                        packages                  SAN_4.5_install_it.6.5.2
+# cd SAN_4.5_install_it.6.5.2
+# ls
+install_it           install_it_original  misc
+# ./install_it
+Logfile /var/tmp/install_it_Sun_StorEdge_SAN.log : restarted on Wed Apr 14 16:38:40 PDT 2004
+
+
+This routine installs the packages and patches that
+make up Sun StorEdge SAN.
+
+PatchPro may be installed for use with downloading the
+most up to date versions of the patches.
+
+Would you like to continue with the installation? 
+ [y,n,?] y
+
+
+Verifying system...
+
+
+Checking for incompatiable SAN patches
+
+
+Begin installation of SAN software
+
+Installing StorEdge SAN packages -
+
+         Package SUNWsan        : Installed Previously.
+         Package SUNWcfpl       : Installed Previously.
+         Package SUNWcfplx      : Installed Previously.
+         Package SUNWcfclr      : Installed Previously.
+         Package SUNWcfcl       : Installed Previously.
+         Package SUNWcfclx      : Installed Previously.
+         Package SUNWfchbr      : Installed Previously.
+         Package SUNWfchba      : Installed Previously.
+         Package SUNWfchbx      : Installed Previously.
+         Package SUNWfcsm       : Installed Previously.
+         Package SUNWfcsmx      : Installed Previously.
+         Package SUNWmdiu       : Installed Previously.
+         Package SUNWjfca       : Installed Previously.
+         Package SUNWjfcau      : Installed Previously.
+         Package SUNWjfcax      : Installed Previously.
+         Package SUNWjfcaux     : Installed Previously.
+
+StorEdge SAN packages installation completed.
+
+Begin patch installation
+        patch 113046-01 : Installed Previously
+        patch 113049-01 : Installed Previously
+        patch 111847-08 : Installed Previously
+        patch 113039-04 : Obsoleted by Q959631-09
+Installed Previously
+        patch 113040-06 : Obsoleted by Q959632-10
+Installed Previously
+        patch 113041-04 : Obsoleted by Q959633-02
+Installed Previously
+        patch 113042-05 : Obsoleted by Q959634-05
+Installed Previously
+        patch 113043-05 : Obsoleted by Q959635-05
+Installed Previously
+        patch 113044-04 : Installed Successfully
+        patch 114476-02 : Installed Previously
+        patch 114477-01 : Installed Previously
+        patch 114478-02 : Installed Previously
+        patch 114878-03 : Installed Previously
+        patch Q959651-02        : install_it: Patchadd failed with a status of 24
+
+
+This software failed to completely install.
+It may not be safe for the system to remain in this undetermined state.
+
+        Would you like to rollback your changes ?  [y,n,?] n
+# pwd
+/export/home/vnc/mpxiosw/sfk_6.5.2/SAN_4.5_install_it.6.5.2
+# cd ..
+# ls
+EC.6.5.2                  Install_order             man                       qpatches
+EC_lv15b01                ls                        packages                  SAN_4.5_install_it.6.5.2
+# cd qpatches
+# ls
+Q959650-02  Q959651-02  Q959652-03  Q959653-01  Q959654-02  Q959655-02  Q959656-01  Q959657-01  Q959658-01  Q959659-02
+# patchadd ./Q959651-02
+
+Checking installed patches...
+ERROR: This patch is incompatible with patch Q959631-09
+which has already been applied to the system. To install this patch,
+first remove the incompatible patch Q959631-09 using patchrm(1M).
+
+Patchadd is terminating.
+# patchrm Q959631-09
+
+Checking installed patches...
+
+Patch Q959631-09 is required to be installed by patch 113044-04
+it cannot be backed out until patch 113044-04 is backed out.
+
+Patchrm is terminating.
+# patchrm 113044-04
+
+Checking installed patches...
+
+Backing out patch 113044-04...
+
+Executing postbackout script...
+Patch 113044-04 has been backed out.
+
+# 
+# wpd
+wpd: not found
+# pwd
+/export/home/vnc/mpxiosw/sfk_6.5.2/qpatches
+# ls
+Q959650-02  Q959651-02  Q959652-03  Q959653-01  Q959654-02  Q959655-02  Q959656-01  Q959657-01  Q959658-01  Q959659-02
+# patchadd Q959651-02
+
+Checking installed patches...
+ERROR: This patch is incompatible with patch Q959631-09
+which has already been applied to the system. To install this patch,
+first remove the incompatible patch Q959631-09 using patchrm(1M).
+
+Patchadd is terminating.
+# patchrm Q959631-09
+
+Checking installed patches...
+
+Patch Q959631-09 is required to be installed by patch Q959632-10
+it cannot be backed out until patch Q959632-10 is backed out.
+
+Patchrm is terminating.
+# patchrm Q959632-10
+
+Checking installed patches...
+
+Patch Q959632-10 is required to be installed by patch 114878-03
+it cannot be backed out until patch 114878-03 is backed out.
+
+Patchrm is terminating.
+# patchrm 114878-03
+
+Checking installed patches...
+
+Backing out patch 114878-03...
+
+Executing postbackout script...
+Patch 114878-03 has been backed out.
+
+# patchrm Q959632-10
+
+Checking installed patches...
+
+Patch Q959632-10 is required to be installed by patch Q959633-02
+it cannot be backed out until patch Q959633-02 is backed out.
+
+Patchrm is terminating.
+# patchrm Q959633-02
+
+Checking installed patches...
+
+Patch Q959633-02 is required to be installed by patch Q959634-05
+it cannot be backed out until patch Q959634-05 is backed out.
+
+Patchrm is terminating.
+# patch rm Q959634-05
+patch: Too many file arguments.
+patch: Usage:   patch [-blNR] [-c|-e|-n] [-d dir] [-D define] [-i patchfile]\
+              [-o outfile] [-p num] [-r rejectfile] [file]
+# patchrm Q959634-05
+
+Checking installed patches...
+
+Backing out patch Q959634-05...
+
+Executing postbackout script...
+cat: cannot open //var/sadm/pkg/SUNWsan/Q959634-05.sav
+//var/sadm/pkg/SUNWsan/Q959634-05.sav: No such file or directory
+Patch Q959634-05 has been backed out.
+
+# patchrm Q959632-10
+
+Checking installed patches...
+
+Patch Q959632-10 is required to be installed by patch Q959633-02
+it cannot be backed out until patch Q959633-02 is backed out.
+
+Patchrm is terminating.
+# patchrm Q959633-02 
+
+Checking installed patches...
+
+Backing out patch Q959633-02...
+
+Executing postbackout script...
+cat: cannot open //var/sadm/pkg/SUNWsan/Q959633-02.sav
+//var/sadm/pkg/SUNWsan/Q959633-02.sav: No such file or directory
+Patch Q959633-02 has been backed out.
+
+# patchrm Q959632-10
+
+Checking installed patches...
+
+Patch Q959632-10 is required to be installed by patch Q959635-05
+it cannot be backed out until patch Q959635-05 is backed out.
+
+Patchrm is terminating.
+# patchrm Q959635-05
+
+Checking installed patches...
+
+Backing out patch Q959635-05...
+
+Executing postbackout script...
+cat: cannot open //var/sadm/pkg/SUNWsan/Q959635-05.sav
+//var/sadm/pkg/SUNWsan/Q959635-05.sav: No such file or directory
+Patch Q959635-05 has been backed out.
+
+# patchrm Q959632-10
+
+Checking installed patches...
+
+Backing out patch Q959632-10...
+
+Executing postbackout script...
+cat: cannot open //var/sadm/pkg/SUNWsan/Q959632-10.sav
+//var/sadm/pkg/SUNWsan/Q959632-10.sav: No such file or directory
+Patch Q959632-10 has been backed out.
+
+# ls       
+Q959650-02  Q959651-02  Q959652-03  Q959653-01  Q959654-02  Q959655-02  Q959656-01  Q959657-01  Q959658-01  Q959659-02
+# patchadd  Q959651-02
+
+Checking installed patches...
+ERROR: This patch is incompatible with patch Q959631-09
+which has already been applied to the system. To install this patch,
+first remove the incompatible patch Q959631-09 using patchrm(1M).
+
+Patchadd is terminating.
+# patchrm Q959631-09
+
+Checking installed patches...
+
+Backing out patch Q959631-09...
+
+Executing postbackout script...
+cat: cannot open //var/sadm/pkg/SUNWsan/Q959631-09.sav
+//var/sadm/pkg/SUNWsan/Q959631-09.sav: No such file or directory
+Patch Q959631-09 has been backed out.
+
+# patchadd Q959651-02
+
+Checking installed patches...
+Executing prepatch script...
+ **************************************** 
+ **************************************** 
+ **************************************** 
+ ATTENTION!ATTENTION!ATTENTION!ATTENTION!
+ ATTENTION!ATTENTION!ATTENTION!ATTENTION!
+ ATTENTION!ATTENTION!ATTENTION!ATTENTION!
+ **************************************** 
+ **************************************** 
+ **************************************** 
+
+ This patch is for internal testing and 
+ development purposes ONLY!
+
+ Use of this patch will make this system 
+ an UNSUPPORTED configuration and may 
+ CORRUPT this system.
+
+ Press Control-C in the next 30 seconds 
+ to abort this patch installation.
+
+ **************************************** 
+ **************************************** 
+ **************************************** 
+
+Proceeding with installation
+
+Verifying sufficient filesystem capacity (dry run method)...
+Installing patch packages...
+
+Patch number Q959651-02 has been successfully installed.
+See /var/sadm/patch/Q959651-02/log for details
+Executing postpatch script...
+
+Patch packages installed:
+  SUNWcsu
+  SUNWcsxu
+  SUNWhea
+  SUNWmdi
+  SUNWmdiu
+  SUNWmdix
+
+# 
+# pwd
+/export/home/vnc/mpxiosw/sfk_6.5.2/qpatches
+# cd ..
+# ls
+EC.6.5.2                  Install_order             man                       qpatches
+EC_lv15b01                ls                        packages                  SAN_4.5_install_it.6.5.2
+# cd SAN_4.5_install_it.6.5.2
+# ls
+install_it           install_it_original  misc
+# ./install_it
+Logfile /var/tmp/install_it_Sun_StorEdge_SAN.log : restarted on Wed Apr 14 16:51:23 PDT 2004
+
+
+This routine installs the packages and patches that
+make up Sun StorEdge SAN.
+
+PatchPro may be installed for use with downloading the
+most up to date versions of the patches.
+
+Would you like to continue with the installation? 
+ [y,n,?] y
+
+
+Verifying system...
+
+
+Checking for incompatiable SAN patches
+
+
+Begin installation of SAN software
+
+Installing StorEdge SAN packages -
+
+         Package SUNWsan        : Installed Previously.
+         Package SUNWcfpl       : Installed Previously.
+         Package SUNWcfplx      : Installed Previously.
+         Package SUNWcfclr      : Installed Previously.
+         Package SUNWcfcl       : Installed Previously.
+         Package SUNWcfclx      : Installed Previously.
+         Package SUNWfchbr      : Installed Previously.
+         Package SUNWfchba      : Installed Previously.
+         Package SUNWfchbx      : Installed Previously.
+         Package SUNWfcsm       : Installed Previously.
+         Package SUNWfcsmx      : Installed Previously.
+         Package SUNWmdiu       : Installed Previously.
+         Package SUNWjfca       : Installed Previously.
+         Package SUNWjfcau      : Installed Previously.
+         Package SUNWjfcax      : Installed Previously.
+         Package SUNWjfcaux     : Installed Previously.
+
+StorEdge SAN packages installation completed.
+
+Begin patch installation
+        patch 113046-01 : Installed Previously
+        patch 113049-01 : Installed Previously
+        patch 111847-08 : Installed Previously
+        patch 113039-04 : Obsoleted by Q959651-02
+Installed Previously
+        patch 113040-06 : Installed Successfully
+        patch 113041-04 : Installed Successfully
+        patch 113042-05 : Installed Successfully
+        patch 113043-05 : Installed Successfully
+        patch 113044-04 : Installed Successfully
+        patch 114476-02 : Installed Previously
+        patch 114477-01 : Installed Previously
+        patch 114478-02 : Installed Previously
+        patch 114878-03 : Installed Successfully
+        patch Q959651-02        : Installed Previously
+        patch Q959652-03        : Installed Successfully
+        patch Q959653-01        : Installed Successfully
+        patch Q959654-02        : Installed Successfully
+        patch Q959655-02        : Installed Successfully
+        patch Q959656-01        : Installed Successfully
+        patch Q959657-01        : Installed Successfully
+        patch Q959658-01        : Installed Successfully
+        patch Q959659-02        : Installed Successfully
+        patch Q959650-02        : Installed Successfully
+[Optional] Install Patchpro to search for updates
+to the Sun StorEdge SAN release ?
+
+ [y,n,?] y
+
+Patchpro not installed. Starting installation of Patchpro.
+
+
+This utility will install PatchPro and all required support
+software. It is a wrapper around pkgadd and patchadd. It
+will honor your SVR4 install policies and will backout all
+changes if anything goes wrong.
+
+Patches may be applied in support of the installation. For
+that reason, this utility should be run on a quiet system
+with no active windowing, preferrably in single user mode.
+If reboot is required, you will see a message at the end of
+the installation.
+
+This installation will preserve critical data files by
+executing a shell script with root permission.
+
+Would you like to continue with the installation?  [y,n,?,q] y
+
+Beginning installation ...
+Now installing supporting packages...
+        SUNWjhrt
+        == installed version is newer
+        SUNWsdb
+        == installed successfully
+        SUNWapcy
+        == installed successfully
+        SUNWppmn
+        == installed successfully
+        SUNWcert
+        == installed successfully
+        SUNWppro
+        == installed successfully
+
+Installation is complete and verified. Be sure to:
+
+        o Add "/opt/SUNWppro/bin" to your PATH. Set this in
+        your .cshrc or .profile to make it permanent.
+        o If you have not installed the PatchPro patch
+        certificates, see "/opt/SUNWppro/README" for
+        instructions.
+        o If you have not installed the Sun certificates,
+        see   "/etc/certs/SUNW/README" for instructions.
+        o Run the "/opt/SUNWppro/bin/uninstallpatchpro"
+        script to uninstall PatchPro.
+
+Ready to configure PatchPro Security Certificates.
+
+
+----------------------------------------------------------
+Confirm the following security certificates are valid.
+Information on security certificates can be located at
+http://www.sun.com/pki/ca/
+
+Each of the certificate must be comfirmed to complete the
+installation of PatchPro.
+----------------------------------------------------------
+
+Importing certificate smicacert
+Owner: O=Sun Microsystems Inc, CN=Sun Microsystems Inc CA (Class B)
+Issuer: CN=Sun Microsystems Inc Root CA, O=Sun Microsystems Inc, C=US
+Serial number: 1000006
+Valid from: Mon Nov 13 11:23:10 PST 2000 until: Fri Nov 13 11:23:10 PST 2009
+Certificate fingerprints:
+         MD5:  B4:1F:E1:0D:80:7D:B1:AB:15:5C:78:CB:C8:8F:CE:37
+         SHA1: 1E:38:11:02:F0:5D:A3:27:5C:F9:6E:B1:1F:C4:79:95:E9:6E:D6:DF
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+
+Importing certificate smirootcacert
+Certificate was added to keystore
+
+Importing certificate patchsigning
+Certificate was added to keystore
+
+
+PatchPro Configuration Completed.
+
+
+
+Assessing patches needed for your system...
+........
+Retrieved patch list...
+Downloading patches to /var/spool/pkg/patchpro...
+.
+/var/spool/pkg/patchpro/113039-05.jar has been validated.
+
+/var/spool/pkg/patchpro/113040-07.jar has been validated.
+
+/var/spool/pkg/patchpro/113041-05.jar has been validated.
+.
+/var/spool/pkg/patchpro/113042-06.jar has been validated.
+
+/var/spool/pkg/patchpro/113043-06.jar has been validated.
+
+/var/spool/pkg/patchpro/113044-05.jar has been validated.
+.
+/var/spool/pkg/patchpro/114878-04.jar has been validated.
+
+/var/spool/pkg/patchpro/114478-03.jar has been validated.
+.
+Download of patches completed.
+
+Installing StorEdge SAN patches -
+
+        patch 113039-05 : Obsoleted by Q959651-02
+Installed Previously
+        patch 113040-07 : install_it: Patchadd failed with a status of 6
+
+
+This software failed to completely install.
+It may not be safe for the system to remain in this undetermined state.
+
+        Would you like to rollback your changes ?  [y,n,?] n
+
+# 
+

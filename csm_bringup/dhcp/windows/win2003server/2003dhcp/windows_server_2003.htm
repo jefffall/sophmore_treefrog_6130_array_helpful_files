@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Windows Server 2003</title>
+</head>
+
+<body>
+
+<p align="center"><font size="5">Windows Server 2003</font></p>
+<p align="left"><b>Setting up a DHCP server:</b></p>
+<p align="left">&nbsp;</p>
+<ul>
+  <li>From Manage Your Server, click <b>Add or remove a role</b>. By default,
+    Manage Your Server starts automatically when you log on. <NOLOC>
+    To open Manage Your Server, click <b>Start</b>, click <b>Control Panel</b>,
+    double-click <b>Administrative Tools</b>, and then double-click <b>Manage
+    Your Server</b>.</NOLOC>
+  <li><NOLOC>
+    To open the Configure Your Server Wizard, click <b>Start</b>, click <b>Control
+    Panel</b>, double-click <b>Administrative Tools</b>, and then double-click <b>Configure
+    Your Server Wizard</b>.</NOLOC>
+  </li>
+</ul>
+<p align="left"><img border="0" src="window1.jpg" width="597" height="446"></p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="window2.jpg" width="597" height="446"></p>
+<p align="left"><img border="0" src="window3.jpg" width="432" height="266"></p>
+<p align="left"><img border="0" src="window4.jpg" width="597" height="446"></p>
+<p align="left"><img border="0" src="window5.jpg" width="597" height="446"></p>
+<p align="left"><img border="0" src="window6.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window7.jpg" width="768" height="620"></p>
+<p align="left"><img border="0" src="window8.jpg" width="597" height="446"></p>
+<p align="left"><img border="0" src="window9.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window10.jpg" width="503" height="385"></p>
+<p align="left">&nbsp;</p>
+<p align="left">Select an unused range of addresses from your network</p>
+<p align="left"><img border="0" src="window11.jpg" width="503" height="385"></p>
+<p align="left">No exclusions needed. Leave blank.</p>
+<p align="left"><img border="0" src="window12.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window13.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window14.jpg" width="503" height="385"></p>
+<p align="left">Add a working gateway on your subnet. By convention, gateways
+sometimes end in a 1.</p>
+<p align="left"><img border="0" src="window15.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window16.jpg" width="503" height="385"></p>
+<p align="left">&nbsp;</p>
+<p align="left">Don't need or care about DNS for the array. Leave blank.</p>
+<p align="left"><img border="0" src="window17.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window18.jpg" width="503" height="385"></p>
+<p align="left">&nbsp;</p>
+<p align="left">Activate the scope later as BOOTP information must be added.</p>
+<p align="left"><img border="0" src="window19.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window20.jpg" width="503" height="385"></p>
+<p align="left"><img border="0" src="window21.jpg" width="597" height="446"></p>
+<p align="left">Reopen the DHCP role</p>
+<p align="left"><img border="0" src="window22.jpg" width="800" height="600"></p>
+<p align="left">Expand it.</p>
+<p align="left"><img border="0" src="window23.jpg" width="637" height="450"></p>
+<p align="left"><img border="0" src="window24.jpg" width="637" height="450"></p>
+<p align="left"><img border="0" src="window25.jpg" width="637" height="450"></p>
+<p align="left"><img border="0" src="window26.jpg" width="404" height="448"></p>
+<p align="left"><img border="0" src="window27.jpg" width="404" height="448"></p>
+<p align="left"><img border="0" src="window28.jpg" width="637" height="450"></p>
+<p align="left">Add reservations to mate the MAC address of the A and B array
+controllers to a BOOTP IP address.</p>
+<p align="left"><img border="0" src="window33.jpg" width="348" height="331"></p>
+<p align="left"><img border="0" src="window34.jpg" width="637" height="450"></p>
+<p align="left">Use ADD again to add this next reservation. That means right
+clicking on reservations again.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="window35.jpg" width="348" height="331"></p>
+<p align="left">Verify the reservations are there, the MAC addresses are correct
+for controllers A and B respectively.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="window36.jpg" width="637" height="450"></p>
+<p align="left">Bring up the scope. Right click on it and start it.</p>
+<p align="left"><img border="0" src="window37.jpg" width="637" height="450"></p>
+<p align="left">The scope will go from red to blue.</p>
+<p align="left"><img border="0" src="window38.jpg" width="637" height="450"></p>
+<p align="left">Look at the address leases. If the array performs BOOTP on&nbsp;
+given IP addresses, the addresses under reservations will state transition from
+inactive to active.</p>
+<p align="left"><img border="0" src="window40.jpg" width="637" height="450"></p>
+<p align="left">Close the Manager Your Server window.</p>
+<p align="left"><img border="0" src="window39.jpg" width="800" height="600"></p>
+
+</body>
+
+</html>

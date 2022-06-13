@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Jeffrey.Fall@Sun.COM">
+  <meta name="GENERATOR"
+ content="Mozilla/4.79C-CCK-MCD  [en] (X11; U; SunOS 5.9 sun4u) [Netscape]">
+</head>
+<body>
+<hr width="100%">
+<div style="text-align: center;"><span
+ style="text-decoration: underline;"><span style="font-weight: bold;"><big><big>IP
+addressing for 6130 array</big></big><br>
+<br>
+</span></span>
+<div style="text-align: left;">Using a BOOTP server on:<br>
+&nbsp;&nbsp;&nbsp; <a href="#setup_bootp_server">Solaris Sparc 8 and 9</a><br>
+&nbsp;&nbsp;&nbsp; <a href="#setup_bootp_server">Windows 2000 Advanced
+Server</a><br>
+&nbsp;&nbsp;&nbsp; <a
+ href="windows/win2003server/2003dhcp/windows_server_2003.htm"><span
+ style="text-decoration: underline;">Windows
+Server 2003</span></a><br>
+<br>
+Using a default assigned (by array) Static IP on <br>
+&nbsp;&nbsp;&nbsp; <a href="#static_ip_solairs">Solaris Sparc 8 and </a><a
+ href="#static_ip_solairs">9</a><br>
+&nbsp;&nbsp;&nbsp; <a
+ href="windows/Win2000AdvancedServer/win2000staticIP/6130_array_default_assigned_ip.htm">Windows
+2000 Advanced Server</a><br>
+&nbsp;&nbsp;&nbsp; <a
+ href="windows/win2003server/2003static/winserver2003-staticIP.htm">Windows
+Server 2003</a><br>
+</div>
+</div>
+<small><small><font size="+2"><small><small><br>
+<br>
+</small></small></font></small></small>
+<hr style="width: 100%; height: 2px;"><small><small><font size="+2"><small><small><span
+ style="font-weight: bold; text-decoration: underline;">Background:</span><br>
+<br>
+<br>
+A treefrog Sophomore array
+contains two controllers.
+Each controller needs an IP address to be managed out of band by
+Element
+Manager. The controllers will first each request an IP from a BOOTP
+server.
+If a BOOTP&nbsp;server responds, it will issue an IP&nbsp;address to
+the
+respective array controller.</small></small></font></small></small>
+<p><small><small><font size="+2"><small><small>If a BOOTP&nbsp;server
+does NOT respond, the array will
+default to an internal IP&nbsp;address. The internal address will be:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>192.168.128.101 for
+controller A</small></small></font>
+<br>
+<font size="+2"><small><small>192.168.128.102 for controller B</small></small></font>
+<br>
+&nbsp;
+</small></small></p>
+<p><small><small><font size="+2"><small><small>The Treefrog Sophomore
+array is supported on Solaris Sparc
+and on Windows platforms.</small></small></font>
+<br>
+<font size="+2"><small><small>Therefore, DHCP servers on each of these
+platforms will
+be exploited to provide IP&nbsp;addresses to a Treefrog Sophomore via
+BOOTP.<br>
+</small></small></font></small></small></p>
+<p><small><small><font size="+2"><small><small>Most DHCP servers can be
+configured to deliver BOOTP services.<br>
+</small></small></font></small></small></p>
+<hr style="width: 100%; height: 2px;">
+<p><small><small><font size="+2"><small><small><span
+ style="text-decoration: underline;"><span style="font-weight: bold;"><a
+ name="setup_bootp_server"></a>Setting up a BOOTP server</span></span><br>
+</small></small></font></small></small></p>
+<p><small><small><font size="+2"><small><small>This section of the
+webpage will document how to setup
+a DHCP server with BOOTP option on:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small><a
+ href="solarisSparc/index.html">Solaris
+8 and 9</a></small></small></font>
+</small></small></p>
+<p><a><small><small></small></small></a><small><small><a
+ href="windows/Win2000AdvancedServer/win2kdhcp/setting_up_dhcp_with_windows_2000.htm"><font
+ size="+2"><small><small>Windows 2000 Advanced
+Server</small></small></font></a>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>Windows 2003 Server</small></small></font></small></small>
+<br>
+</p>
+<hr width="100%">
+<p><small><small><small><font size="+3"><small><small><small><span
+ style="text-decoration: underline;"><span style="font-weight: bold;">Setting
+up an additional subnet on a server's existing ethernet interface</span></span><br>
+</small></small></small></font></small></small></small></p>
+<p><small><small><small><font size="+3"><small><small><small>This
+section of the webpage will document how to setup
+array controllers by using a subnet and the static default
+IP&nbsp;addresses
+of:</small></small></small></font>
+</small></small></small></p>
+<p><small><small><font size="+2"><small><small>192.168.128.101 for
+controller A</small></small></font>
+<br>
+<font size="+2"><small><small>192.168.128.102 for controller B</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>To configure the
+controllers across an existing subnet,
+one must assure the subnet switch can pass traffic for another subnet.
+For example, if your server is on an internal subnet of 10.3.4.0, the
+associated switch for the subnet
+will
+have to also allow traffic from a subnet of 192.168.128.0. If there is
+any
+doubt,
+a small 4 port hub can be used to connect the array controllers with
+the
+server's ethernet controller. Note: This will break the connection to
+the
+intranet while the hub is configured.</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>If a server has an extra
+ethernet RJ45 plug or slot, it
+can be used, provided the name of the slot is known. This will prevent
+disruption to the existing network.<br>
+</small></small></font></small></small></p>
+<hr style="width: 100%; height: 2px;">
+<p><small><small><font size="+2"><small><small><span
+ style="font-weight: bold;"><span style="text-decoration: underline;"><a
+ name="static_ip_solairs"></a>Setup additional subnet on Solaris to use
+default array assigned IP addresses<br>
+</span></span></small></small></font></small></small></p>
+<p><small><small><font size="+2"><small><small><br>
+If a static address on the array is not assigned, the array will search
+for BOOTP servers and attempt to download an IP address via BOOTP. If
+no BOOTP servers respond, the array will default to self assigned IP
+addresses of <br>
+</small></small></font></small></small></p>
+<p><small><small><font size="+2"><small><small>182.168.128.101 for
+controller A<br>
+192.168.128.102 for controller B<br>
+</small></small></font></small></small></p>
+<p><small><small><font size="+2"><small><small>ifconfig -a will show
+the ethernet ports in use on the server:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small># ifconfig -a</small></small></font>
+<br>
+<font size="+2"><small><small>lo0:
+flags=1000849&lt;UP,LOOPBACK,RUNNING,MULTICAST,IPv4&gt;
+mtu 8232 index 1</small></small></font>
+<br>
+<font size="+2"><small><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inet 127.0.0.1
+netmask ff000000</small></small></font>
+<br>
+<font size="+2"><small><small><font color="#ff0000">bge0</font>:
+flags=1000843&lt;UP,BROADCAST,RUNNING,MULTICAST,IPv4&gt;
+mtu 1500 index 2</small></small></font>
+<br>
+<font size="+2"><small><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inet 10.4.30.110
+netmask ffffff00 broadcast 10.4.30.255</small></small></font>
+<br>
+<font size="+2"><small><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ether 0:3:ba:32:4d:f1</small></small></font>
+<br>
+<font size="+2"><small><small>#</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>To setup the additional
+needed subnet, as root, issue
+these commands:</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small># ifconfig <font
+ color="#ff0000">bge0</font>:<font color="#33cc00">1</font>
+plumb</small></small></font>
+<br>
+<font size="+2"><small><small># ifconfig bge0:1 192.168.128.100&nbsp; up</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>&lt;&nbsp;Use element
+manager to configure the array to
+an assigned IP&nbsp;address on the original subnet&gt;</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small>Deconfigure the
+additional subnet</small></small></font>
+</small></small></p>
+<p><small><small><font size="+2"><small><small># ifconfig bge0:1 down</small></small></font>
+<br>
+<font size="+2"><small><small># ifconfig bge0:1 unplumb</small></small></font>
+<br>
+&nbsp;
+<br>
+&nbsp;
+</small></small><br>
+<font size="+2"></font>&nbsp;
+</p>
+</body>
+</html>

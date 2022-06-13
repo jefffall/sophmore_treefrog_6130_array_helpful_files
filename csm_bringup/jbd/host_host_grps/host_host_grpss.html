@@ -1,0 +1,527 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<A name=1></a>Configuring Host Groups and Hosts<br>
+See the following topics for information on storage host groups and hosts:<br>
+<br>
+<A href="host_host_grpss.html#1">About Host Groups</a><br>
+<br>
+<A href="host_host_grpss.html#2">Managing Host Groups</a><br>
+<br>
+<A href="host_host_grpss.html#9">About Hosts</a><br>
+<br>
+<A href="host_host_grpss.html#9">Managing Hosts</a><br>
+About Host Groups<br>
+A host group is collection of one or more data hosts on one storage array. The<br>software provides the default All host group, which automatically includes all<br>configured hosts.<br>
+You can include a host group in a LUN map set, which is a logical entity used to<br>partition storage, by mapping the host group to one or more storage array volumes.<br>By including a host group in a LUN map set, you enable the hosts in the group to<br>share access to the volume. Mapping a volume to the All host group, allows all hosts<br>on the network to have access to the volumes. For enhanced security you can create<br>other host groups and include selected hosts in those host groups.
+<p>&nbsp;</p>
+<hr>
+<p><font color="#FF0000">From SM: re host group:</font></p>
+<p><font color="#FF00FF">A host group is collection of one or more data hosts. You can map the host group to one or more volumes to enable the hosts in the group to share access to the volume.<br>
+Related Topics<br>
+<br>
+    * About LUN Map Sets &lt;&lt; Name to be changed??><br>
+    * Displaying Host Group Information<br>
+    * Adding/Removing Host Group Members<br>
+    * Deleting a Host Group<br>
+    * About Initiators</font><br>
+</p>
+<hr>
+<p><br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#2">Displaying Host Group Information</a><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>130</b><br>
+</p>
+<hr>
+<A name=2></a><br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+<br>
+<A href="initiators.pdf">About Initiators</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+Managing Host Groups<br>
+You can create host groups, you can add hosts to or remove hosts from a host group,<br>you can map a volume to a host group, and you can display information about<br>existing host groups and the mappings associated with them.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#2">Displaying Host Group Information</a><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+<br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#5">Mapping a Host Group to a Volume</a><br>
+<br>
+<A href="host_host_grpss.html#5">Unmapping a Host Group from a Volume</a><br>
+Displaying Host Group Information<br>
+You can display summary and detail information on existing host groups. You can<br>also display summary information about the initiators, storage pools, and volumes<br>that are associated with each host group.<br>
+To display information on a host group:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host Groups.<br>
+The Host Group Summary page is displayed.<br>
+Related Topics
+<p>&nbsp;</p>
+<p><font color="#FF0000">A host group is probably called a pool in 6130 lingo</font><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+<b>131</b><br>
+Tech Pubs Online Help Guidelines<br>
+</p>
+<hr>
+<A name=3></a><br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+<br>
+<A href="volumes.pdf">Deleting a Volume</a><br>
+<br>
+<A href="storage_pools.pdf">Deleting a Storage Pool</a><br>
+Creating a Host Group<br>
+To create a new host group:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host Groups.<br>
+The Host Group Summary page is displayed.<br>
+3. Click New.<br>
+The New Host Group Details page is displayed.<br>
+4. Specify a name for the new host name, using a maximum of 16 characters. Valid<br>
+characters include 0 to 9, A to Z and a to z, _ (underscore), and - (dash).<br>
+5. Specify which of the available hosts you want to add to the group by double-<br>
+clicking the host name or names. You can also choose Add All to add all of the<br>available hosts to the host group. To specify which of the selected hosts you want<br>to remove from the host group, double-click on the host name or names. You can<br>also choose Remove All to remove all of the selected hosts from the host group.<br>
+6. Click OK.<br>
+The Host Group Summary page is displayed.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+<br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+<br>
+<A href="volumes.pdf">Deleting a Volume</a><br>
+<br>
+<A href="storage_pools.pdf">Deleting a Storage Pool</a><br>
+Adding/Removing Host Group Members<br>
+Decide which initiators you want to assign to the new host before you begin.<br>
+To add or remove host group members:<br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>132</b><br>
+<hr>
+<A name=4></a>1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host Groups.<br>
+The Host Group Summary page is displayed.<br>
+3. Click the name of the host group that you want to map.<br>
+The Host Group Details page is displayed.<br>
+4. Click Add/Remove Members.<br>
+The Add/Remove Host Group Members page is displayed.<br>
+5. Specify which of the available hosts you want to add or remove from the group<br>
+by double-clicking the host name or names. You can also choose Add All to add<br>all of the available hosts to the host group. To specify which of the selected hosts<br>you want to remove from the host group, double-click on the host name or<br>names. You can also choose Remove All to remove all of the selected hosts from<br>the host group.<br>
+6. Click OK.<br>
+7. The Host Group Summary page is displayed.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+Deleting a Host Group<br>
+You can delete a host group only if there are no volumes and no pools associated<br>with it.<br>
+To delete a storage host group:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host Groups.<br>
+3. Click the name of the host group that you want to delete.<br>
+The Host Group Summary page is redisplayed.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<b>133</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name=5></a><br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+Mapping a Host Group to a Volume<br>
+To map a host group to one or more volume or volumes:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host Groups.<br>
+The Host Group Summary page is displayed.<br>
+3. Click the name of the host group that you want to map.<br>
+The Host Group Details page is displayed.<br>
+4. Click Map.<br>
+The Map Host Group page is displayed.<br>
+5. Click the name of the volume that you want to map to this host group.<br>
+6. Specify the LUN (0 to 255) with which you want to map this host group.<br>
+7. Click OK.<br>
+<b>Note ­ </b>Ensure that for any host included in a host group that is mapped to a<br>volume, that you have created an initiator for each host and mapped it to that host.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+Unmapping a Host Group from a Volume<br>
+You can delete a host group only if there are no volumes and no pools associated<br>with it.<br>
+To unmap a host group from one or more volumes:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host Groups.<br>
+The Host Group Summary page is displayed.<br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>134</b><br>
+<hr>
+<A name=6></a>3. Click the name of the host group that you want to unmap.<br>
+The Mapped Volume Summary page is displayed.<br>
+4. Click the volume that you want to unmap from this host group.<br>
+5. Click OK.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+Host Group Summary Page<br>
+This page provides information on all storage domains. Click a domain name to<br>view the details and additional information for that domain.<br>
+<b>TABLE 1-6</b><br>
+Storage Host Group Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The host group name.<br>
+Accessed Via<br>
+The method the host group is accessed by: Array Controlled or<br>Mapped.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<b>135</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name=7></a>Host Group Details Page<br>
+This page displays details for the selected host groups, including additional<br>information.<br>
+<b>TABLE 1-7</b><br>
+Storage Domain Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The host group name.<br>
+The additional information table provides related information. Click an item to see its<br>details.<br>
+<b>TABLE 1-8</b><br>
+Host Group Additional Information<br>
+<b>Type</b><br>
+<b>Quantity</b><br>
+Hosts<br>
+The number of hosts included in the host group.<br>
+Mapped Volumes<br>
+The number of volumes mapped to this host group.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<br>
+<A href="initiators.pdf">About Initiators</a><br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>136</b><br>
+<hr>
+<A name=8></a>Host Group Details Additional<br>Information - Mapped Volume Summary<br>Page<br>
+This page provides information on the mapped volumes for this specific host group.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The volume name<br>
+LUN<br>
+The LUN associated with this volume.<br>
+Mapped Via<br>
+The method used to map the volume to the host: Default,<br>others??8/19??<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+Host Group Details Additional<br>Information - Host Summary Page<br>
+This page provides information on the hosts for this specific host group.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The host name.<br>
+Host Group<br>
+The host group associated with this host.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#3">Creating a Host Group</a><br>
+<b>137</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name=9></a>About Hosts - <font color="#FF0000">Data is sent to the host via
+FC. It may be sent internally in the array via SATA in later releases. Never via
+SATA from the host to the array.</font><br>
+A host represents a data host, which is a computer that is attached to the storage<br>array and generates data to be saved in a storage array. The data host sends data to<br>the storage array using either a FC<font color="#FF0000"> or SATA</font> connection. Each host that you create is<br>comprised of zero or more initiators that can access various volumes on the storage<br>array. Each host has a name that is unique to the storage array where it resides.<br>
+<font color="#FF0000">
+You can include an individual host in a LUN map set or assign the host to a host<br>group that you can include in a LUN map. A LUN map set is a logical entity used to<br>partition storage. When you include a host in a LUN map set, you enable the host to<br>have access to the volumes in the LUN map set.</font>
+<p><font color="#FF0000">A LUN map is called a &quot;partition&quot; in 6130
+lingo. It is a premium feature needing to be enabled.</font></p>
+<p><br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#9">Managing Hosts</a><br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+Managing Hosts<br>
+You can create hosts, you can map a volume to a host, and you can display<br>information about existing hosts and the mappings associated with them.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#10">Displaying Host Information</a><br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="host_host_grpss.html#11">Deleting a Host</a><br>
+<br>
+<A href="initiators.pdf">About Initiators</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>138</b><br>
+</p>
+<hr>
+<A name=10></a>Displaying Host Information<br>
+You can display summary and detail information on existing hosts. You can also<br>display summary information about the initiators, storage pools, and volumes that<br>are associated with each host.<br>
+To display information on hosts:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Hosts.<br>
+The Hosts Summary page is displayed.<br>
+3. Click a host name for detailed information on that host.<br>
+The Host Details page for the selected host is displayed.<br>
+4. Go to additional information and click any item for more information associated<br>
+with the selected domain.<br>
+The Summary page for the selected item is displayed.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+<br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+<br>
+<A href="volumes.pdf">Deleting a Volume</a><br>
+<br>
+<A href="storage_pools.pdf">Deleting a Storage Pool</a><br>
+Creating a Host<br>
+To create a new host:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+The New Host page is displayed.<br>
+2. Specify a name for the new host, using a maximum of 16 characters. The host<br>
+name is used to identify a system on a network. The host name is associated with<br>an initiator on a data host.<br>
+Valid characters include 0 to 9, A to Z and a to z, _ (underscore), and - (dash).<br>
+3. Select a host group for the new host.<br>
+<b>139</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name=11></a>4. Click OK.<br>
+The Host Summary page appears.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="host_host_grpss.html#4">Deleting a Host Group</a><br>
+Deleting a Host<br>
+You can delete a host only if there are no volumes and no pools associated with it.<br>You cannot delete the DEFAULT storage host.<br>
+To delete a host:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Hosts.<br>
+3. Click the name of the host that you want to delete.<br>
+The Host Details page is displayed.<br>
+4. Click Delete to remove the host.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+Mapping a Host to a Volume<br>
+To map a host to one or more volumes:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host.<br>
+The Host Summary page is displayed.<br>
+3. Click the name of the host that you want to map.<br>
+The Host Details page is displayed.<br>
+4. Click Map.<br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>140</b><br>
+<hr>
+<A name=12></a>The Map Host page is displayed.<br>
+5. Click the name of the volume that you want to map to the host.<br>
+6. Specify the LUN (0 to 255) with which you want to map this host.<br>
+7. Click OK.<br>
+<b>Note ­ </b>Ensure that for any host mapped to a volume, that you have created an<br>initiator and mapped it to that host.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+Unmapping a Host from a Volume<br>
+You can delete a host only if there are no volumes and no pools associated with it.<br>
+To unmap a host from one or more volumes:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Host.<br>
+The Host Summary page is displayed.<br>
+3. Click the name of the host that you want to unmap.<br>
+The Mapped Volume Summary page is displayed.<br>
+4. Click the volume that you want to unmap from this host.<br>
+5. Click OK.<br>
+Related Topics<br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="host_host_grpss.html#3">Adding/Removing Host Group Members</a><br>
+<b>141</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name=13></a>Host Summary Page<br>
+This page provides information on all hosts. Click a host name to view the details<br>and additional information for that host.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The host name.<br>
+Host Group<br>
+The host group associated with this host.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+Host Details Page<br>
+This page displays details for the selected domain, including additional information.<br>
+<b>TABLE 1-9</b><br>
+Domain Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The host name.<br>
+Host Group<br>
+Specify the host group to associate with this host.<br>
+The additional information table provides additional related information. Click an<br>item to see its details.<br>
+<b>TABLE 1-10</b><br>
+Host Additional Information<br>
+<b>Type</b><br>
+<b>Number of Items</b><br>
+Initiators<br>
+The number of initiators associated with this host.<br>
+Mapped Volumes<br>
+The number of volumes mapped to this host.<br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>142</b><br>
+<hr>
+<A name=14></a>Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+<br>
+<A href="initiators.pdf">About Initiators</a><br>
+<b>143</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name=15></a>Storage Host Additional Information -<br>Initiator Summary Page<br>
+This page shows the initiators that are associated with this host.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the initiator.<br>
+Host Name<br>
+The name of the host.<br>
+Host Type<br>
+The initiator host type.<br>
+WWN<br>
+The worldwide name of the initiator.<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+Host Additional Information - Mapped<br>Volume Summary Page<br>
+This page shows the mapped volumes that are associated with this storage domain.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The volume name<br>
+LUN<br>
+The LUN associated with this volume.<br>
+Mapped Via<br>
+The method used to map the volume to the host: Default,<br>others??8/19??<br>
+Related Topics<br>
+<br>
+<A href="storage_partitioning.pdf">About LUN Map Sets</a><br>
+<br>
+<A href="host_host_grpss.html#10">Creating a Host</a><br>
+Chapter<br>
+Configuring Host Groups and Hosts<br>
+<b>144</b><br>
+<hr>
+<A name=16></a><br>
+<A href="volumes.pdf">About Volumes</a><br>
+<br>
+<A href="volumes.pdf">Managing Volumes</a><br>
+<br>
+<A href="snapshots.pdf">Resnapping a Volume</a><br>
+<b>145</b><br>
+Tech Pubs Online Help Guidelines<br>
+<hr>
+<A name="outline"></a><h1>Document Outline</h1>
+<ul><li><A href="host_host_grpss.html#1">Configuring Host Groups and Hosts</A>
+<ul><li><A href="host_host_grpss.html#1">About Host Groups</A>
+<ul><li><A href="host_host_grpss.html#1">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#2">Managing Host Groups</A>
+<ul><li><A href="host_host_grpss.html#2">Related Topics</A>
+<li><A href="host_host_grpss.html#2">Displaying Host Group Information</A>
+<ul><li><A href="host_host_grpss.html#2">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#3">Creating a Host Group</A>
+<ul><li><A href="host_host_grpss.html#3">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#3">Adding/Removing Host Group Members</A>
+<ul><li><A href="host_host_grpss.html#4">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#4">Deleting a Host Group</A>
+<ul><li><A href="host_host_grpss.html#4">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#5">Mapping a Host Group to a Volume</A>
+<ul><li><A href="host_host_grpss.html#5">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#5">Unmapping a Host Group from a Volume</A>
+<ul><li><A href="host_host_grpss.html#6">Related Topics</A>
+<li><A href="host_host_grpss.html#6">Related Topics</A>
+<li><A href="host_host_grpss.html#7">Related Topics</A>
+<li><A href="host_host_grpss.html#8">Related Topics</A>
+</ul></ul><li><A href="host_host_grpss.html#9">About Hosts</A>
+<ul><li><A href="host_host_grpss.html#9">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#9">Managing Hosts</A>
+<ul><li><A href="host_host_grpss.html#9">Related Topics</A>
+<li><A href="host_host_grpss.html#10">Displaying Host Information</A>
+<ul><li><A href="host_host_grpss.html#10">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#10">Creating a Host</A>
+<ul><li><A href="host_host_grpss.html#11">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#11">Deleting a Host</A>
+<ul><li><A href="host_host_grpss.html#11">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#11">Mapping a Host to a Volume</A>
+<ul><li><A href="host_host_grpss.html#12">Related Topics</A>
+</ul><li><A href="host_host_grpss.html#12">Unmapping a Host from a Volume</A>
+<ul><li><A href="host_host_grpss.html#12">Related Topics</A>
+<li><A href="host_host_grpss.html#13">Related Topics</A>
+<li><A href="host_host_grpss.html#14">Related Topics</A>
+<li><A href="host_host_grpss.html#15">Related Topics</A>
+</ul></ul></ul></ul><hr>
+</BODY>
+</HTML>

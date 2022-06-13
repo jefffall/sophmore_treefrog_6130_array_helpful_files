@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+Reviewed by Jeff Fall
+<p>&nbsp;</p>
+<p>
+<A name=1></a>C H A P T E R<br>
+<b>7</b><br>
+Installing the Host Software<br>
+This chapter describes how to install data host software on various supported host<br>platforms. It contains the following topics:<br>
+<br>
+<A href="chapter7s.html#1">Preparing for Installation</a><br>
+<br>
+<A href="chapter7s.html#2">Installing the Remote Management Software</a><br>
+<br>
+<A href="chapter7s.html#3">Installing Host Software for Solaris Hosts</a><br>
+<br>
+<A href="chapter7s.html#5">Downloading the Software</a><br>
+<br>
+<A href="chapter7s.html#7">Installing the Host Software for Windows Hosts</a><br>
+<br>
+<A href="chapter7s.html#8">Installing Host Software for Red Hat Linux, HP-UX, and AIX Hosts</a><br>
+<br>
+<A href="chapter7s.html#9">Installing Host Software for SGI Hosts</a><br>
+<br>
+<A href="chapter7s.html#9">Installing Host Software for NetWare Hosts</a><br>
+Preparing for Installation<br>
+Before installing the data host software, verify the following for each data host:<br>
+<br>
+Operating system and version is supported as described in the release notes<br>
+<br>
+Host Bus Adapter is installed and supported as described in the release notes<br>
+<br>
+HBA firmware is at the required level as described in the release notes &lt;&lt;can the<br>firmware be downloaded from Sunsolve download center?&gt;&gt;</p>
+<p><font color="#FF0000">This does not appear to be easy to find on Sunsolve</font></p>
+<p><a href="http://sunsolve6.sun.com/search/advsearch.do"><font color="#FF00FF">http://sunsolve6.sun.com/search/advsearch.do</font></a></p>
+<p><font color="#FF0000">It would be great if we could upgrade the HPA cards
+while installing the rest of the required software on the datahost.</font></p>
+<p><br>
+<br>
+Data hosts are cabled to the array as described in <A href="819-0032-10.pdf">"Connecting Data Hosts" on<br>page 40</a><br>
+<b>61</b><br>
+</p>
+<hr>
+<A name=2></a>Installing the Remote Management<br>Software<br>
+The Sun StorEdge 6130 remote management software provides a command line<br>interface (CLI) for configuring the array from a host other than the external<br>management host.<font color="#FF0000">
+The CLI is available for Solaris, Windows, Red Hat Linux, HP-<br>UX, and AIX operating environments. (For a list of supported operating system<br>versions see the <i>Sun StorEdge 6130 Array Release Notes</i>.)</font><br>
+&lt;&lt;Note to reviewers: Please review this matrix for accuracy and provide info where<br>you see ???. This table will be moved to the Release Notes at RR, so that only the RN<br>will need to be updated when additional OSs (such as Solaris 10) are qualified. &gt;&gt;<br>
+Table 7-1 lists the data host platforms, patches, and drivers supported with this<br>release of the software.<br>
+<b>TABLE 7-1</b><br>
+Supported Data Host Platforms<br>
+<b>Operating System</b><br>
+<b>Minimum OS Patch</b><br>
+<b>HBA Driver</b><br>
+<b>Multipath Driver</b><br>
+<b>HA Cluster</b><br>
+Windows 2000 Server<br>
+Service Pack SP4<br>
+Emulex<br>
+Sun StorEdge Traffic<br>
+MSCS 1.0<br>
+and Advanced Server<br>
+QLogic<br>
+Manager<br>
+Windows Server 2003<br>
+Service Pack SP4<br>
+Standard, Web, and<br>Enterprise Editions<br>
+Red Hat Linux<br>
+Sun 7.00.2<br>
+Sun StorEdge Traffic<br>
+N/S<br>
+<font color="#FF0000">
+AS/ES/WS 2.1 and<br>
+Manager<br>
+AS/WS 3.0 (32-bit)<br>
+HP-UX 11.0, 11.11<br>
+Patch set<br>
+HP Native<br>
+HP LVM<br>
+MC/Service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+September 2003<br>
+Guard<br>
+IBM AIX ???<br>
+???<br>
+???</font><br>
+Solaris 8, Update 4<br>
+SAN<br>
+Sun StorEdge Traffic<br>
+Sun Cluster<br>
+Foundation<br>
+Manager<br>
+Software 4.5<br>
+<font color="#FF0000">
+JNI</font><br>
+DMP Array Support<br>
+VERITAS Cluster<br>
+Library (ASL) *<br>
+Solaris 9<br>
+SAN<br>
+Sun StorEdge Traffic<br>
+Sun Cluster<br>
+Foundation<br>
+Manager<br>
+Software 4.5<br>
+JNI<br>
+DMP Array Support<br>
+VERITAS Cluster<br>
+Library (ASL)<br>
+<b>62</b><br>
+Sun StorEdge 6130 Array Getting Started Guide · August 2004 (Beta Draft)<br>
+<hr>
+<A name=3></a><b>TABLE 7-1</b><br>
+Supported Data Host Platforms<br>
+<b>O<font color="#FF0000">perating System</font></b><font color="#FF0000"><br>
+<b>Minimum OS Patch</b><br>
+<b>HBA Driver</b><br>
+<b>Multipath Driver</b><br>
+<b>HA Cluster</b><br>
+Novell NetWare 6<br>
+SP4<br>
+??<br>
+QLogic F/O<br>
+Novell Cluster<br>Services NW6.5 -<br>
+Novell NetWare 6.5<br>
+SP1.1<br>
+NCS v1.7, NW6.0 -<br>NCS 1.6<br>
+SGI IRIX 6.5.22<br>
+??<br>
+??<br>
+??</font>
+<p>&nbsp;</p>
+<p><font color="#FF0000" size="5">We have a compatibility matrix to cover these
+on our website:</font></p>
+<p><a href="http://nws-treefrog/sophomore/phase2/sophomore-compatibility-v7.pdf">http://nws-treefrog/sophomore/phase2/sophomore-compatibility-v7.pdf</a></p>
+<p>username is treefrog</p>
+<p>password is arboreal</p>
+<p>Here is a snap of it on 8.31.04</p>
+<p><img border="0" src="chapte1.gif" width="871" height="715"></p>
+<p>&nbsp;</p>
+<p><br>
+* Available for download from http://www.sun.com./software/download/allproducts.html<br>
+Installing Host Software for Solaris<br>Hosts<br>
+The data host software for Solaris is distributed on the Sun StorEdge 6130 Array<br>Host CD.<br>
+Before You Begin<br>
+<br>
+Check to be sure that the data host is running a supported version of the Solaris<br>operating system, all required patches are applied, and the supported HBA<br>firmware level is installed. Refer to the <i>Sun StorEdge 6130 Array Release Notes </i>for a<br>list of supported operating systems, patches, and HBAs.<br>
+<br>
+The install script installs the following packages:<br>
+<br>
+Sun SAN Foundation software<br>
+<br>
+Remote Management Software (Remote CLI client) for Solaris<br>
+<br>
+Sun Storage Automated Diagnostic Environment software (STORade)</p>
+<p><font color="#00FF00">&gt;&gt;&gt;&gt;&gt;&gt;Sun StorEdge 6130 Configuration Service
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</font><font color="#FF0000">(Please
+add this one)</font><br>
+<br>
+Solaris Host multipathing software Sun StorEdge Traffic Manager (SSTM)<br>
+Starting the Installation<br>
+To start the installation script:<br>
+<b>1. Log in to Solaris as root.</b><br>
+<b>2. Insert the host installation CD into a local drive.</b><br>
+Chapter 7<br>
+Installing the Host Software<br>
+<b>63</b><br>
+</p>
+<hr>
+<A name=4></a><b>3. Change to the cdrom directory:</b><br>
+<b>cd cdrom</b><br>
+<p><font size="4" color="#FF0000">This script is out of date. Please get the
+BUILD 9 script.</font></p>
+<p><font size="4" color="#FF0000">Information is at:</font></p>
+<p><font size="4" color="#FF0000"><a href="http://webhome/SIG">http://webhome/SIG</a></font></p>
+<p>Sophomore.</p>
+<p>username treefrog</p>
+<p>password arboreal</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>4. Start the installation script by typing:</b><br>
+<b>./install</b><br>
+The following is displayed:<br>
+Host Software Installation<br>--------------------------<br>
+This script installs software for your Sun StorEdge(tm) 6130 storage system.<br>
+Software components included in this distribution:<br>
+        - Sun StorEdge[tm] Data Host Software<br>        - Sun StorEdge[tm] Management Host Software<br>        - Sun StorEdge[tm] Remote Management Host Software<br>
+Do you want to continue? [y/n] : <b>y</b><br>
+<b>5. Enter y to continue the installation.</b><br>
+You are then prompted to select which software package you want to install.<br>
+<b>6. To install the data host software, enter y as shown in the following example:</b><br>
+Do you want to install ....<br>
+        Sun StorEdge[tm] Data Host Software [y/n] : <b>y</b><br>
+<b>7. Enter y to confirm the software you selected.</b><br>
+You have chosen to install the following components:<br>
+        Sun StorEdge[tm] Data Host Software<br>
+Is this correct? [y/n] : <b>y</b><br>
+The installation of the data host software takes approximately &lt;TBS&gt; minutes to<br>complete.<br>
+During the installation, you will be prompted to press Return to continue the<br>installation of each package. You will also be asked to accept the terms of the Storage<br>Automated Diagnostic Environment license agreement.<br>
+<b>64</b><br>
+Sun StorEdge 6130 Array Getting Started Guide · August 2004 (Beta Draft)<br>
+</p>
+<hr>
+<A name=5></a>The following is an example of the messages and pathnames of the files that will be<br>displayed during the installation:<br>
+&lt;<b>TBS&gt;</b><br>
+Enabling Sun StorEdge Traffic Manager Software<br>
+To enable Sun StorEdge SAN Foundation and Sun StorEdge Traffic Manager<br>software (MPxIO/STMS) on the host:<br>
+<b>1. Open the /kernel/drv/scsi_vhci.conf file with a text editor.</b><br>
+<b>2. Set </b>mpxio-disable=no <b>in the file.</b><br>
+<b>3. Reboot the host.</b><br>
+Downloading the Software<br>
+The remote CLI client for non-Solaris hosts is distributed from Sun's Download<br>Center.<br>
+To download the software, follow these steps:<br>
+<b>1. From the host where you want to install the software, open a browser window and</b><br>
+<b>go to Sun's Download Center at:</b><br>
+http://wwws.sun.com/software/download/sys_admin.html#stor<br>
+<b>2. Click Sun StorEdge </b>6130 ARRAY. &lt;NEED ACTUAL LINK TITLE&gt;<br>
+<b>3. Click on Sun StorEdge 6000 Family Host Installation Software Download. </b>&lt;NEED<br>
+LINK TITLE&gt;<br>
+<b>4. Click Download to access the download window for all operating systems.</b><br>
+Chapter 7<br>
+Installing the Host Software<br>
+<b>65</b><br>
+<hr>
+<A name=6></a><b>5. Log in using your customer user name and password.</b><br>
+<b>TABLE 7-2</b><br>
+Remote CLI Client Software for Non-Solaris Operating Systems<br>
+Operating System<br>
+Software<br>
+File<br>
+AIX<br>
+Sun StorEdge 6000 CLI Package for AIX<br>
+aix_README.txt<br>aix_se6x20.tar<br>
+HP-UX<br>
+Sun StorEdge 6000 CLI Package for HP-UX<br>
+hpux_README.txt,<br>hpux_se6x20.tar<br>
+Red Hat Linux 7.2<br>
+Sun StorEdge 6000 CLI Package for Linux<br>
+linux_README.txt<br>inux_se6x20.tar<br>
+Windows 2000 server Sun StorEdge 6000 CLI Package for Windows<br>
+win_README.txt,<br>
+and Advanced Server<br>
+win_Disk1.zip<br>
+Windows Server 2003<br>
+&lt;TBS&gt;<br>
+Standard, Web, and<br>Enterprise Editions<br>
+Novell NetWare<br>
+&lt;TBS&gt;<br>
+SGI IRIX<br>
+&lt;TBS&gt;<br>
+The README file contains the latest installation instructions for the client.<br>
+<b>6. For AIX, HP-UX, and Linux, use these steps:</b><br>
+<b>a. Click the file to download (see </b><A href="chapter7s.html#6">TABLE 7-2<b>).</b></a><br>
+<b>b. The web browser prompts you to download the file. (Download to any</b><br>
+<b>directory except </b>/opt<b>).</b><br>
+<b>c. Save the </b>SE6X30_host_sw.tar.Z <b>package to a temporary working directory after</b><br>
+<b>you download it.</b><br>
+# <b>cp </b>SE6X30_host_sw.tar.Z <b>/</b><i>directory</i><br>
+<b>d. where <i>/directory </i>is a directory name in which to copy the package.</b><br>
+<b>e. Change to the temporary directory.</b><br>
+# <b>cd /</b><i>directory</i><br>
+<b>f. Uncompress the </b>SE6X30_host_sw.tar.Z <b>file.</b><br>
+<b>g. Extract the contents by entering:</b><br>
+<b>tar -xvf </b>SE6x30_host_sw.tar<br>
+<b>66</b><br>
+Sun StorEdge 6130 Array Getting Started Guide · August 2004 (Beta Draft)<br>
+<hr>
+<A name=7></a><b>Note ­ </b>Note: If checksum errors occur while using platform-specific tar, use the<br>GNU version of tar.<br>
+<b>7. For Windows 2000 or Windows 2003, use these steps:</b><br>
+<b>a. Unzip </b>Disk1.zip <b>using any zip program that supports Windows.</b><br>
+<b>b. Save the unzipped folder to any directory.</b><br>
+Installing the Host Software for<br>Windows Hosts<br>
+Installing the Remote CLI Client<br>
+<b>1. Download the software for the Windows host as described in <A href="chapter7s.html#5">"Downloading the</b></a><br>
+<A href="chapter7s.html#5"><b>Software" on page 65.</b></a><br>
+<b>2. Double click </b>setup.exe<b>.</b><br>
+<b>3. Read the licensing agreement and answer the licensing question.</b><br>
+If you accept the licensing agreement, the software installs on the host.<br>
+<b>4. Open the Command Prompt (From the Start menu, click Programs -&gt; Accessories -</b><br>
+<b>&gt; Command Prompt).</b><br>
+<b>5. Add </b>c:\Program Files\Sun Microsystems\SSCS <b>into your command prompt path.</b><br>
+The Remote CLI client is now installed. You can now enter sscs commands in the<br>Command Prompt. For information about the commands, see the sscs(1M) man<br>page.<br>
+Chapter 7<br>
+Installing the Host Software<br>
+<b>67</b><br>
+<hr>
+<A name=8></a>Installing Host Software for Red Hat<br>Linux, HP-UX, and AIX Hosts<br>
+Installing the Remote CLI Client<br>
+<b>1. Download the host software for the appropriate operating system as described in</b><br>
+<A href="chapter7s.html#5"><b>"Downloading the Software" on page 65.</b></a><br>
+<b>2. Log in as superuser (root).</b><br>
+If aliases exist in the superuser environment or profile, the software installation and<br>configuration might have unexpected results. Remove any aliases created for the<br>environment (for example, cp="cp -i") before you install or configure the<br>software.<br>
+For the Korn shell: # <b>unalias -a</b><br>
+For the C shell:&gt; <b>unalias *</b><br>
+<b>3. Verify that you have write permissions in </b>/opt<b>.</b><br>
+<b>4. Install the package by entering:</b><br>
+./se6x30_install &lt;&lt;What is package name??&gt;&gt;<br>
+<b>5. Read the licensing agreement and answer the licensing question.</b><br>
+When you accept the licensing agreement, the software installs in /opt/se6x30 on<br>the host.<br>
+<b>6. Add </b>/opt/se6x30/bin <b>to your path.</b><br>
+<b>7. Enter </b>/opt/se6x30/bin/sscs <b>at the command line.</b><br>
+The Remote CLI client is now installed. For more information about the commands,<br>see the sscs(1M) man page.<br>
+<b>68</b><br>
+Sun StorEdge 6130 Array Getting Started Guide · August 2004 (Beta Draft)<br>
+<hr>
+<A name=9></a>Installing Host Software for SGI Hosts<br>
+&lt;TBS&gt;<br>
+Installing Host Software for NetWare<br>Hosts<br>
+&lt;TBS&gt;<br>
+Chapter 7<br>
+Installing the Host Software<br>
+<b>69</b><br>
+<hr>
+<A name=10></a><b>70</b><br>
+Sun StorEdge 6130 Array Getting Started Guide · August 2004 (Beta Draft)<br>
+<hr>
+<A name="outline"></a><h1>Document Outline</h1>
+<ul><li><A href="chapter7s.html#1">Installing the Host Software</A>
+<ul><li><A href="chapter7s.html#1">Preparing for Installation</A>
+<li><A href="chapter7s.html#2">Installing the Remote Management Software</A>
+<li><A href="chapter7s.html#3">Installing Host Software for Solaris Hosts</A>
+<ul><li><A href="chapter7s.html#3">Before You Begin</A>
+<li><A href="chapter7s.html#3">Starting the Installation</A>
+<li><A href="chapter7s.html#5">Enabling Sun StorEdge Traffic Manager Software</A>
+</ul><li><A href="chapter7s.html#5">Downloading the Software</A>
+<li><A href="chapter7s.html#7">Installing the Host Software for Windows Hosts</A>
+<ul><li><A href="chapter7s.html#7">Installing the Remote CLI Client</A>
+</ul><li><A href="chapter7s.html#8">Installing Host Software for Red Hat Linux, HP-UX, and AIX Hosts</A>
+<ul><li><A href="chapter7s.html#8">Installing the Remote CLI Client</A>
+</ul><li><A href="chapter7s.html#9">Installing Host Software for SGI Hosts</A>
+<li><A href="chapter7s.html#9">Installing Host Software for NetWare Hosts</A>
+</ul></ul><hr>
+</BODY>
+</HTML>

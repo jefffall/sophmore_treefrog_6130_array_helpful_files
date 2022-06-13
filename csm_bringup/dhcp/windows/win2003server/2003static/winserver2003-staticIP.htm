@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Windows Server 2003</title>
+</head>
+
+<body>
+
+<p align="center"><u><b><font size="5">Windows Server 2003</font></b></u></p>
+<p align="center"><u><b><font size="5">2nd static IP on an ethernet adapter</font></b></u></p>
+<p align="center">&nbsp;</p>
+<p align="left">Assure the server has a static IP, not DHCP IP</p>
+<p align="left"><img border="0" src="winser1.jpg" width="404" height="448"></p>
+<p align="left">&nbsp;</p>
+<p align="left">Add another IP by selecting Advanced...</p>
+<p align="left"><img border="0" src="winser2.jpg" width="404" height="481"></p>
+<p align="left">Selct ADD</p>
+<p align="left">Add in the proper IP to be on the same subnet as the array
+controllers A and B.</p>
+<p align="left">Controller A will be set to 192.168.128.101</p>
+<p align="left">Controller B will be set to 192.168.128.102</p>
+<p align="left">192.168.128.100 is used for the second IP address in this
+example as it does not conflict with above, yet is on the same subnet - eg first
+three octets match:</p>
+<p align="left"><img border="0" src="winser3.gif" width="324" height="139"></p>
+<p align="left">This finishes the configuration:</p>
+<p align="left"><img border="0" src="winser4.jpg" width="404" height="481"></p>
+<p align="left">As the array is on the subnet, a new gateway is not needed.</p>
+<p align="left">Use 6130 Configuration to add the array:</p>
+<p align="left"><img border="0" src="winser5.jpg" width="800" height="600"></p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="winser6.jpg" width="800" height="600"></p>
+<p align="left">Select Auto Discovery. If that does not work, use manual
+discovery and enter one of the static default&nbsp; IP addresses of one of the
+controllers, then add the other.</p>
+<p align="left">For example:</p>
+<p align="left">Use 192.168.128.101</p>
+<p align="left">For discovery.</p>
+<p align="left">Then, use 192.168.128.102</p>
+<p align="left"><img border="0" src="winser7.jpg" width="800" height="600"></p>
+<p align="left">When this is complete, use SE6130 Configuration Service to
+assign a new IP to each controller. </p>
+<p align="left">Make sure you can then contact the controllers on the normal
+subnet with ping and using SE6130 Configuration Service.</p>
+<p align="left">Then, in Windows 2003 server delete the extra 102.168.129.100 IP
+address under Network Connections/Advanced.</p>
+<p align="left">Remove:</p>
+<p align="left"><img border="0" src="winser8.jpg" width="404" height="481"></p>
+<p align="left"><img border="0" src="winser9.jpg" width="404" height="481"></p>
+<p align="left">Done.</p>
+
+</body>
+
+</html>

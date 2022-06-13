@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<A name=1></a>C H A P T E R <b>12</b><br>
+Configuring Initiators<br>
+See the following topics for information on initiators:<br>
+<br>
+<A href="initiatorss.html#1">About Initiators</a><br>
+<br>
+<A href="initiatorss.html#2">Managing Initiators</a><br>
+About Initiators<br>
+An initiator is the protocol-specific physical port that initiates the I/O exchanges<br>with the array. In a Fibre Channel (FC) storage area network (SAN), an initiator is<br>the FC port that is identified by a port worldwide name (WWN). If a host is<br>connected to the array by two host bus adapters (HBAs), the array handles the host as<br>two different initiators. FC array LUN masking and
+<font color="#FF0000"> mapping (partitioning - a premium feature) </font>uses initiator port<br>identifiers to authenticate storage customers.<br>
+In a SCSI environment, an initiator is a SCSI node that sends requests to a SCSI<br>device. SCSI adapters in hosts are usually initiators, but storage devices that provide<br>virtualization can also act as initiators to other SCSI devices.<br>
+When a new initiator is connected into the storage environment, the array discovers<br>it and adds it to the Default domain. To complete the configuration, add a<br>description of the initiator to identify it and then map the initiator to a volume.<br>
+To see the current initiators, go to the Initiator Summary page, as described in<br><A href="initiatorss.html#2">Displaying Initiator Information.</a><br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#2">Managing Initiators</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+<b>108</b><br>
+<hr>
+<A name=2></a>Managing Initiators<br>
+You can create initiators and map them to volumes.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#1">About Initiators</a><br>
+<br>
+<A href="initiatorss.html#2">Displaying Initiator Information</a><br>
+<br>
+<A href="initiatorss.html#3">Creating an Initiator</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="initiatorss.html#3">Deleting an Initiator</a><br>
+Displaying Initiator Information<br>
+You can display summary and detail information about existing initiators. You can<br>also display summary information about mapped volumes associated with each<br>storage initiator.<br>
+To display information on initiators:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt;Physical &gt; Initiators.<br>
+The Initiator Summary page is displayed.<br>
+3. Click an initiator name for detailed information on that initiator.<br>
+The Initiator Details page for the selected initiator is displayed.<br>
+4. Go to Additional Information and click Mapped Volumes for more information<br>
+associated with the selected initiator.<br>
+The Summary page for the selected item is displayed.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#2">Managing Initiators</a><br>
+<br>
+<A href="initiatorss.html#3">Creating an Initiator</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+<b>109</b><br>
+Tech Pubs Online Help Guidelines · October 2003<br>
+<hr>
+<A name=3></a>Creating an Initiator<br>
+You can create a new initiator and then associate it with a host or host group. The<br>host or host group is associated with a volume.<br>
+You will need the worldwide name (WWN) for the initiator that you want to<br>associate with a volume.<br>
+To create an initiator:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Initiators, and click New.<br>
+The New Initiator page appears.<br>
+3. Specify a name for the new initiator, using a maximum of 12 characters.<br>
+Valid characters include 0 to 9, A to Z and a to z, _ (underscore), and - (dash).<br>
+4. Specify a description for the new initiator, using a maximum of 256 characters,<br>
+including spaces. Click Next.<br>
+5. Select an existing WWN or specify a new WWN for the initiator. Click Next.<br>
+6. Select the host.<br>
+7. Select the host type, usually the data host operating system, of the initiator.<br>
+8. Review the specified information. If you are satisfied, click OK. Otherwise, click<br>
+Previous to make changes.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#2">Managing Initiators</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+Deleting an Initiator<br>
+You cannot delete an initiator that is in the In Use state (that is, mapped to a<br>volume).<br>
+To delete an initiator:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Physical &gt; Initiators.<br>
+3. Select the initiators that you want to delete.<br>
+Chapter 12<br>
+Configuring Initiators<br>
+<b>110</b><br>
+<hr>
+<A name=4></a>This enables the Delete button.<br>
+4. Click Delete.<br>
+5. Confirm the deletion.<br>
+The initiators disappears from the Initiator Summary page.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#2">Managing Initiators</a><br>
+<br>
+<A href="initiatorss.html#2">Displaying Initiator Information</a><br>
+<br>
+<A href="initiatorss.html#3">Creating an Initiator</a><br>
+<br>
+<A href="volumes.pdf">Unmapping a Volume from a Host or Host Group</a><br>
+Initiator Summary Page<br>
+This page provides information about all initiators that are configured on the<br>system.<br>
+You can filter the initiator listings by domain, thereby showing only those initiators<br>that are associated with that domain. Setting the filter configures the domain filter<br>for volumes, virtual disks, pools, and initiator summary pages.<br>
+Click an initiator name to view details for that initiator. You can map multiple<br>volumes to the initiator from the Initiator Details page.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the initiator.<br>
+Host Name<br>
+The name of the host.<br>
+Host Type<br>
+The initiator host type.<br>
+WWN<br>
+The worldwide name of the initiator.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#1">About Initiators</a><br>
+<br>
+<A href="initiatorss.html#2">Displaying Initiator Information</a><br>
+<br>
+<A href="initiatorss.html#3">Creating an Initiator</a><br>
+<b>111</b><br>
+Tech Pubs Online Help Guidelines · October 2003<br>
+<hr>
+<A name=5></a><br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="initiatorss.html#3">Deleting an Initiator</a><br>
+Chapter 12<br>
+Configuring Initiators<br>
+<b>112</b><br>
+<hr>
+<A name=6></a>Initiator Details Page<br>
+This page shows details about the selected initiator, including additional<br>information. You can modify the initiator name, host, and host group name from this<br>page.<br>
+<b>TABLE 12-1</b><br>
+Initiator Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the initiator.<br>
+WWN<br>
+The worldwide name of the initiator.<br>
+Host Type<br>
+The initiator operating system (OS) type.<br>
+Host Name<br>
+The name of the host with which this initiator is associated.<br>
+The Additional Information table provides additional related information. Click an<br>item to see its details.<br>
+<b>TABLE 12-2</b><br>
+Physical Initiator Details Additional Information<br>
+<b>Type</b><br>
+<b>Number of Items</b><br>
+Mapped Volumes<br>
+The number of volumes mapped to this initiator.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#1">About Initiators</a><br>
+<br>
+<A href="initiatorss.html#2">Managing Initiators</a><br>
+Initiator Details - Mapping Summary<br>Page<br>
+??following is unverified, due to no initiator on the box we've got access to, 8/19??<br>
+<b>113</b><br>
+Tech Pubs Online Help Guidelines · October 2003<br>
+<hr>
+<A name=7></a>This page shows the mappings for this initiator.<br>
+<b>TABLE 12-3</b><br>
+Initiator Details - Mappings Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The volume name.<br>
+State<br>
+The current state of the volume:<br>· Mapped - The volume is mapped currently to one or more<br>
+initiators.<br>
+· Free - The volume is free currently and unmapped by an initiator.<br>
+Condition<br>
+The condition of the volume:<br>· Intact - The volume is operational currently.<br>· Broken - The volume is not operational currently.<br>· Degraded - The volume is degraded, and one or more input or<br>
+output data paths is not operating properly; however, the<br>redundant failover paths are still intact.<br>
+· Snapshot Reset - Removes an older snapshot and resnaps the<br>
+volume.<br>
+<font color="#FF0000">
+Storage Domain - This does not look like a 6130 feature</font><br>
+The storage domain associated with this volume.<br>
+Raw Capacity<br>
+The raw storage capacity (in bytes) that is allocated to this volume.<br>The capacity is the usable size of the volume for data. You might<br>need additional capacity for a snapshot reserve.<br>
+Name<br>
+The volume name.<br>
+Related Topics<br>
+<br>
+<A href="initiatorss.html#1">About Initiators</a><br>
+<br>
+<A href="initiatorss.html#2">Displaying Initiator Information</a><br>
+<br>
+<A href="initiatorss.html#3">Creating an Initiator</a><br>
+<br>
+<A href="volumes.pdf">Mapping a Volume to a Host or Host Group</a><br>
+<br>
+<A href="initiatorss.html#3">Deleting an Initiator</a><br>
+Chapter 12<br>
+Configuring Initiators<br>
+<b>114</b><br>
+<hr>
+<A name=8></a><b>115</b><br>
+Tech Pubs Online Help Guidelines · October 2003<br>
+<hr>
+<A name="outline"></a><h1>Document Outline</h1>
+<ul><li><A href="initiatorss.html#1">Configuring Initiators</A>
+<ul><li><A href="initiatorss.html#1">About Initiators</A>
+<ul><li><A href="initiatorss.html#1">Related Topics</A>
+</ul><li><A href="initiatorss.html#2">Managing Initiators</A>
+<ul><li><A href="initiatorss.html#2">Related Topics</A>
+<li><A href="initiatorss.html#2">Displaying Initiator Information</A>
+<ul><li><A href="initiatorss.html#2">Related Topics</A>
+</ul><li><A href="initiatorss.html#3">Creating an Initiator</A>
+<ul><li><A href="initiatorss.html#3">Related Topics</A>
+</ul><li><A href="initiatorss.html#3">Deleting an Initiator</A>
+<ul><li><A href="initiatorss.html#4">Related Topics</A>
+<li><A href="initiatorss.html#4">Related Topics</A>
+<li><A href="initiatorss.html#6">Related Topics</A>
+<li><A href="initiatorss.html#7">Related Topics</A>
+</ul></ul></ul></ul><hr>
+</BODY>
+</HTML>

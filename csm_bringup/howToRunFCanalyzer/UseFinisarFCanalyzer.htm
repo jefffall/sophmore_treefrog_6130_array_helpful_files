@@ -1,0 +1,132 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<p align="center"><font size="5"><u><b>Using a Finisar Fibre Channel Analyzer</b></u></font></p>
+<p align="center">&nbsp;</p>
+<hr>
+<p align="left"><b>If the Finisar analyzer is broken or caught a virus:</b></p>
+<p align="left">Finisar builds fibre channel analyzers on PC platform using the
+NT 4.0 and Windows 2000 operating systems. Care must be taken to assure each
+analyzer has the proper firewall and anti virus software installed. This will
+insure trouble free operation of the PC based analyzer.</p>
+<p align="left">Finisar packages the analyzers on the Dolch Rugged PC platform.
+Various generations of this ruggedized portable PC exist. Some can only run NT
+4.0 due to Trident video driver releases on the 9520 video chip. The later
+platforms use the Trident 9525DVD video chip. A Toshiba laptop video driver can
+be used to convert these systems to the more stable Windows 2000 professional or
+Server platform.</p>
+<p align="left">The Finisar software suite covers most OS platforms and most
+Finisar Fibre Channel test card releases.</p>
+<p align="left">The Finisar test suite can be downloaded from Finisar at:</p>
+<p align="left"><a href="ftp://ftp.finisar.com">ftp.finisar.com</a></p>
+<p align="left">The internal Sun firewall may prevent ftp access to this site.</p>
+<p align="left">The username is public</p>
+<p align="left">the password is publc</p>
+<p align="left">Drivers for most NT 4.0 configurations of the Dolch based
+Finisar analyzer can be downloaded from Dolch.</p>
+<p align="left"><a href="http://www.dolch.com">http://www.dolch.com</a></p>
+<p align="left">The username for the support site is DolchRugged</p>
+<p align="left">the password is: DropMe</p>
+<p align="left">The username and password is case sensitive.</p>
+<p align="left">Dolch does not provide much Win2000 support. Drivers are
+typically for the Trident 9525DVD chip and the VIA Rhine II ethernet chip. Most
+any driver from many OEM vendors can be downloaded for the Finisar/Dolch in a
+pinch by performing a google search as Win2000 drivers are not on the Dolch or
+Finisar support sites.</p>
+<hr>
+<p align="left"><b>Setting up the lab network address:</b></p>
+<p align="left">One should perform a service desk to get an IP address for the
+Finisar analyzer if moving to a different subnet in the lab</p>
+<p align="left">The method for changing the IP address is different in NT 4.0
+and Windows 2000</p>
+<p align="left">Windows 2000 is documented here:</p>
+<p align="left"><img border="0" src="UseFin1.gif" width="654" height="544"></p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="UseFin2.gif" width="654" height="544"></p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="UseFin3.gif" width="344" height="344"></p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="UseFin4.gif" width="367" height="430"></p>
+<p align="left">&nbsp;</p>
+<p align="left">Fill in the static IP parameters here. If your lab supports DHCP,
+check DHCP. Due to virus problems from mobile laptops, most labs ar static IP.</p>
+<p align="left"><img border="0" src="UseFin5.gif" width="404" height="448"></p>
+<p align="left">&nbsp;</p>
+<hr>
+<p align="left"><b>Using the Fibre Channel Analyzer remotely.</b></p>
+<p align="left">Once the analyzer is connected between the initiator and
+target(s), it is useful to take a trace. Using the front panel of the analyzer
+can be cumbersome, so remote access is desired.</p>
+<p align="left">One can access a PC based analyzer using VNC Viewer, as long as
+VNC server is running on the Finisar Analyzer. VNC can be used from a Solaris
+based machine such as a Sunray or a standalone system or server.</p>
+<p align="left">To get VNC for your system:</p>
+<p align="left"><a href="http://www.realvnc.org">http://www.realvnc.org</a></p>
+<p align="left">Once VNC is installed, one can connect to the remote analyer via
+the IP address.</p>
+<p align="left">To get the IP address of the Finisar analyzer, open up a command
+prompt:</p>
+<p align="left"><img border="0" src="UseFin7.gif" width="668" height="331"></p>
+<p align="left">&nbsp;</p>
+<p align="left">VNC viewer can be used from a Sunray by issuing vncviewer.</p>
+<p align="left">Connect like this:</p>
+<p align="left"><img border="0" src="UseFin8.jpg" width="381" height="134"></p>
+<p align="left">If VNC is not working, check your firewall settings on your PC.</p>
+<p align="left">One can also use Microsoft Remote Desktop on any Finisar
+Analyzers equipped with Windows 2000 Server (#6 has this OS on it).</p>
+<p align="left">Windows XP users have this provision built into their OS as
+installed by default:</p>
+<p align="left">Programs--&gt;Accessories--&gt;Communications--&gt;Remote
+Desktop Connection.</p>
+<p align="left">This looks like VNC, but, provides a more solid connection and
+user experience.</p>
+<p align="left">If your PC does not have this installed, it is downloadable from
+Microsoft here:</p>
+<p align="left"><a href="http://www.microsoft.com/windowsxp/downloads/tools/rdclientdl.mspx">http://www.microsoft.com/windowsxp/downloads/tools/rdclientdl.mspx</a></p>
+<p align="left">The download and installation result in the RDP client as shown
+below:</p>
+<p align="left"><img border="0" src="UseFin9.jpg" width="411" height="183"></p>
+<p align="left">RDP will connect to a Windows 2000 Server based Finisar as shown
+below.</p>
+<p align="left">Do not use a password for the Administrator account as one is
+not set (by tradition of NWK16 group owning analyzers)</p>
+<hr>
+<p align="left"><b>Taking a Fibre Channel Trace</b></p>
+<p align="left">&nbsp;</p>
+<p align="left">Most of the common Finisar tools are installed on the Desktop.</p>
+<p align="left">To take a trace, use the GT Trace controller.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><img border="0" src="UseFin6.gif" width="1024" height="768"></p>
+<p align="left">Firstly, connect the analyzer to the initiator and target
+systems. this is done by pulling the cables out of the switch or HBA, running
+the cables to the analyzer and then plugging the cables first pulled out of the
+HBA or switch into the analyzer.</p>
+<p align="left">The analyzer will have one or more cards called
+&quot;Channels&quot;. Each has two ports. One uses both ports on the card - one
+for in from the HBA or switch&nbsp; (initiator) and one out to the target array,
+switch or device.</p>
+<p align="left">Now, run GT Trace controller:</p>
+<p align="left"><img border="0" src="UseFin10.gif" width="323" height="436"></p>
+<p align="left">Make sure it is listed as ready.</p>
+<p align="left">Take a quick look with VIEW:</p>
+<p align="left">One can see &quot;loss of sync&quot;.</p>
+<p align="left">This is normal at the FC-0 layer to have an error when there is
+no cable connected.</p>
+<p align="left"><img border="0" src="UseFin11.gif" width="1024" height="740"></p>
+<p align="left">So, if these errors are encountered, the unit is probably not
+connected.</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+
+</body>
+
+</html>

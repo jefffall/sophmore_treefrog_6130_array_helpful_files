@@ -1,0 +1,495 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<A name=1></a>C H A P T E R <b>1</b><br>
+Configuring Volume Snapshots<br>
+See the following topics for information on configuring and managing volume<br>snapshots:<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+About Volume Snapshots<br>
+A snapshot is a copy of the data on a volume at the moment you create the snapshot.<br>Creating a snapshot causes the array controller to suspend I/O to the base volume<br>while it creates a physical volume, called the snapshot reserve volume. The snapshot<br>reserve volume stores information about the data that has changed since the<br>snapshot was created. The capacity of the snapshot reserve volume is a configurable<br>percentage of the base volume.<br>
+You can work with snapshot volumes as you would any other volume, with the<br>exception that you cannot take a snapshot of a snapshot. Each snapshot can be<br>accessed independently by other applications. A snapshot can be mounted on<br>another server and used in the following ways:<br>
+<br>
+Backing up snapshots of data to reduce downtime for backup operations<br>
+Backing up snapshots, rather than online data, enables critical transactions to<br>keep running during the backup process. Mount the snapshot to the backup<br>server, and then back up the snapshot's data to tape.<br>
+<br>
+Performing data analysis and testing applications with actual, current data.<br>
+Instead of working with operating data or interfering with critical transactions,<br>use the most recent snapshot for analysis or testing of data.<br>
+<br>
+Restarting applications from the snapshot<br>
+<b>154</b><br>
+<hr>
+<A name=2></a>If an application problem causes bad data to be written to the primary volume,<br>restart the application with the last known good snapshot until it is convenient to<br>perform a full recovery.<br>
+<b>Note ­ </b>A snapshot of data is not suitable for failure recovery. Continue to use offline<br>backup methods to create full-volume backup copies.<br>
+Snapshots on the Sun StorEdge 6130 array are copy-on-write or dependent copy. In<br>this type of snapshot, write operations to the primary volume causes the system to<br>copy the snapshot metadata and copy-on-write data to the snapshot reserve volume.<br>Because the only blocks that are physically stored in the snapshot reserve volume<br>are those that have changed since the time the snapshot was created, the snapshot<br>uses less disk space than a full physical copy.<br>
+When a write operation occurs on the primary volume to a data block in which the<br>data has not changed since the snapshot was created, the management software does<br>the following:<br>
+<br>
+Copies the new data to the snapshot reserve volume<br>
+<br>
+Writes the new data to the primary volume<br>
+<br>
+Adds a record to the snapshot bitmap indicating the location of the new data<br>
+When a host sends a read request to the snapshot, the system checks whether the<br>requested blocks have changed on the primary volume since the snapshot was<br>created. If they have changed, the read request is satisfied from the data stored in the<br>snapshot reserve volume. If the data has not changed, the read request is satisfied<br>from the primary volume. Snapshots can also accept write operations. Write<br>operations to a snapshot are stored in the snapshot reserve volume.<br>
+The management software provides a warning message when the snapshot reserve<br>volume nears the configurable threshold. The threshold is a percentage of the full<br>capacity of the snapshot reserve (the default is 30%). When the snapshot reserve<br>volume threshold is met, its capacity can be expanded using the free capacity on the<br>virtual disk.<br>
+To see the current snapshots for a volume, go to the Snapshot Summary page, as<br>described in <A href="snapshotss.html#4">Displaying Volume Snapshot Information</a>.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#4">Planning a Volume Snapshot</a><br>
+<b>155</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=3></a>Managing Volume Snapshots<br>
+You can create snapshots, resnap an existing snapshot, copy a snapshot, disable or<br>delete a snapshot, map and unmap snapshots, and you can display information<br>about existing snapshots.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#4">Displaying Volume Snapshot Information</a><br>
+<br>
+<A href="snapshotss.html#4">Planning a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#6">Creating a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#7">Resnapping a Volume</a><br>
+<br>
+<A href="snapshotss.html#9">Unmapping a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#8">Mapping a Volume Snapshot to a Host or Host Group</a><br>
+<br>
+<A href="snapshotss.html#7">Copying a Snapshot</a><br>
+<br>
+<A href="snapshotss.html#9">Disabling a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#10">Deleting a Snapshot</a><br>
+Enabling Volume Snapshots<br>
+Before you can use the snapshots feature, you must enable it.<br>
+To enable the volume snapshots feature:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Administration &gt; Licensing.<br>
+The Licensable Feature page is displayed.<br>
+3. Click Add License.<br>
+The Add License page opens.<br>
+4. Select the Snapshot license type from the drop down menu.<br>
+5. Enter the version number and the digest, and click OK.<br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>156</b><br>
+<hr>
+<A name=4></a>Displaying Volume Snapshot Information<br>
+You can display summary and detail information for existing snapshots.<br>
+To display information on snapshots:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshots<br>
+The Snapshot Summary page is displayed.<br>
+3. Click the snapshot name for detailed information on that snapshot.<br>
+The Volume Details page for the selected volume is displayed.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#4">Planning a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#6">Creating a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#9">Unmapping a Volume Snapshot</a><br>
+Planning a Volume Snapshot<br>
+When you create a snapshot, as long as it is enabled, storage array performance is<br>impacted by the copy-on-write activity to the associated snapshot reserve volume. If<br>a snapshot is no longer needed you can stop the copy-on-write activity by either<br>disabling or deleting the snapshot.<br>
+When disabled, the snapshot and associated reserve volume still exist. When you<br>need to create a different point-in-time image of the same base volume, you can re-<br>snap the volume to reuse the disabled snapshot and its associated reserve volume.<br>This takes less time than creating a new snapshot.<br>
+If you do not intend to recreate a snapshot, you can delete the snapshot instead of<br>disabling it. When you delete a snapshot, the management software also deletes the<br>associated snapshot reserve volume.<br>
+When you create a snapshot, be prepared to provide the following information:<br>
+<br>
+Snapshot volume name<br>
+Provide a unique name that identifies the snapshot and enables you to easily<br>identify the primary volume.<br>
+<br>
+Reserve volume name<br>
+<b>157</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=5></a>When you create a snapshot, you also create a snapshot reserve volume that<br>stores information about the data that has changed since the snapshot was<br>created. Provide a unique name that enables you to easily identify the snapshot to<br>which it corresponds.<br>
+<br>
+Capacity of the reserve volume<br>
+You must specify the capacity of the snapshot reserve volume as a percentage of<br>the base volume. You can eliminate the risk of running out of space, by setting the<br>snapshot reserve volume to the 100% level of activity, indicating that every block<br>will change, for the following reasons:<br>
+<br>
+Space in the snapshot reserve volume is consumed each time a block is written<br>to the primary volume that was not written since the snapshot was created or<br>when a block is written to the snapshot for the first time. Estimating the rate at<br>which these activities occur can be difficult.<br>
+<br>
+After you specify the capacity of the snapshot reserve volume, you can expand<br>its capacity by using the free capacity on the virtual disk.<br>
+<br>
+The reserve volume capacity that generates a warning message<br>
+You can specify the threshold at which the array generates messages to indicate<br>the level of space left in the snapshot reserve volume. By default, the array<br>generates a warning notification when data in the snapshot reserve volume<br>reaches 30% of the available capacity. You can monitor the percentage of space<br>used from the Volume Details page for the volume snapshot.<br>
+<br>
+The manner in which the management software handles failures.<br>
+If the reserve volume for a snapshot becomes full, the management software can:<br>
+<br>
+Fail the snapshot creation. Therefore, the snapshot becomes invalid but the<br>base volume continues to operate normally<br>
+<br>
+Fail the base volume. Therefore, attempts to write new data to the base volume<br>will fail. This leaves the snapshot as a valid copy of the original base volume.<br>
+<br>
+The way a virtual disk is selected<br>
+A snapshot can be created on a virtual disk as long as the RAID level, the number<br>of disks, and the disk type (either FC or SATA) of the virtual disk matches the<br>parent volumes' pool profile. The virtual disk must also have enough capacity for<br>the snapshot volume. You must determine the way the software assigns the<br>snapshot volume to a virtual disk. The following options are available:<br>
+<br>
+Automatic: The management software automatically selects the virtual disk on<br>which to create the volume from a list (provided by the array) of virtual disks<br>that match the necessary criteria.<br>
+<br>
+Manual: Enables you to select the virtual disks on which to create the volume<br>from the list of all available virtual disks.<br>
+<br>
+Create: Enables you to create a new virtual disk on which to create the<br>snapshot volume.<br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>158</b><br>
+<hr>
+<A name=6></a><br>
+Whether or not to map the snapshot volume to a host or host group<br>
+Determine which hosts or host groups, if any, you want to have read/write access<br>to the snapshot volume by including the snapshot volume in a LUN map set.<br>
+To include the snapshot volume in a LUN map set, select Yes and the software<br>prompts you to select the host or host groups to map to the volume. Otherwise,<br>select no.<br>
+By default the All host group allows all hosts on the network to have access to the<br>volumes. You can map the snapshot to this host group, however for enhanced<br>security you can create other hosts and host groups. For instructions, go to<br><A href="hosts_host_grps.pdf">Configuring Host Groups and Hosts</a>.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#6">Creating a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#9">Unmapping a Volume Snapshot</a><br>
+Creating a Volume Snapshot<br>
+For information on the factors you must consider in planning a snapshot, see<br><A href="snapshotss.html#4">Planning a Volume Snapshot.</a><br>
+When you run the Create a Snapshot Volume wizard, you are prompted to do the<br>following:<br>
+1. Define the snapshot name.<br>
+2. Define the snapshot reserve volume name.<br>
+3. Assign the capacity to the snapshot reserve volume<br>
+4. Define the snapshot reserve volume capacity notification threshold.<br>
+5. Select the snapshot failure handling method.<br>
+6. Select the virtual disk selection method.<br>
+7. Select whether or not to map the snapshot volume to a host or host group.<br>
+<b>Note ­ </b>You cannot create a snapshot of a target volume.<br>
+To create a volume snapshot:<br>
+<b>159</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=7></a>1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Volumes.<br>
+3. Click a volume name to view the Volume Details page for that volume.<br>
+4. Click Snapshot.<br>
+The Create a Snapshot Volume wizard is displayed.<br>
+Follow the steps in the wizard. Click the Help button in the wizard for more<br>information.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+Resnapping a Volume<br>
+To resnap a volume:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshots.<br>
+The Snapshot Summary page appears.<br>
+3. Select the snapshot that you want to resnap, which enables the Re-snap button.<br>
+4. Click Resnap.<br>
+Upon completion of the new snapshot, this message appears:<br>
+The requested snapshot(s) have been resnapped.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+Copying a Snapshot<br>
+Before copying a snapshot, be sure that a suitable target volume exists on the storage<br>array, or create a new target volume specifically for the snapshot copy.<br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>160</b><br>
+<hr>
+<A name=8></a><b>Caution ­ </b>A snapshot volume copy will overwrite all data on the target volume<br>and automatically make the target volume read-only to hosts. Ensure that you no<br>longer need the data or have backed up the data on the target volume before starting<br>a volume copy.<br>
+To copy a snapshot:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshot.<br>
+3. Click Copy.<br>
+The Copy Snapshot page is displayed.<br>
+4. Select a copy priority.<br>
+Valid values are Highest, High, Medium, Low, and Lowest. The higher priorities<br>will allocate more resources at the expense of the storage array's performance.<br>
+5. Select a target volume from the Target Volumes list.<br>
+Only a valid target volume having a capacity equal to or greater than the source<br>volume will be available in the Target Volumes list.<br>
+<b>Note ­ </b>Selecting a target volume with a capacity similar to the snapshot volume<br>will reduce the risk of having unusable space on the target volume after the volume<br>copy completes.<br>
+6. Stop all I/O activity to the snapshot volume and target volume.<br>
+7. Unmount any file systems on the source volume and target volume, if applicable.<br>
+8. Review the specified information. If you are satisfied, click OK. Otherwise, click<br>
+Cancel.<br>
+9. Remount any file systems on the source volume and target volume, if applicable.<br>
+10. Enable I/O activity to the snapshot volume and target volume.<br>
+Mapping a Volume Snapshot to a Host or Host<br>Group<br>
+To map a volume snapshot to one or more hosts or host groups:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshots.<br>
+<b>161</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=9></a>The Snapshot Summary page is displayed.<br>
+3. Click the volume to which you want to map one or more hosts or host groups.<br>
+The Map button is enabled<br>
+4. Click Map.<br>
+The Map Volume page appears with a list of available Hosts and Host Groups.<br>Use the quick filter to display only Hosts or Host Groups.<br>
+5. Select the Host or Host Group that you want to map to this volume and click OK.<br>
+A message specifies that the volume or volumes were mapped successfully<br>
+Unmapping a Volume Snapshot<br>
+To unmap a volume snapshot:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshots.<br>
+The Snapshot Summary page appears.<br>
+3. Select the snapshot that you want to unmap, which enables the Unmap button.<br>
+4. Click Unmap.<br>
+You are prompted to confirm the unmapping.<br>
+5. Click OK.<br>
+6. Upon completion, this message appears:<br>
+The volume was successfully unmapped.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#9">Disabling a Volume Snapshot</a><br>
+Disabling a Volume Snapshot<br>
+Disabling a volume snapshot does not remove either the volume snapshot or its<br>associated reserve volume.<br>
+When you disable a volume snapshot:<br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>162</b><br>
+<hr>
+<A name=10></a><br>
+You can re-enable the snapshot volume by selecting the volume snapshot from the<br>Snapshot Summary page and clicking the Re-snap button.<br>
+<br>
+Only the specified volume snapshot is disabled. All other volume snapshots<br>remain functional.<br>
+To disable a volume snapshot:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshots.<br>
+The Snapshot Summary page appears.<br>
+3. Select the snapshot that you want to disable, which enables the Disable button.<br>
+4. Click Disable.<br>
+You are prompted to confirm the disabling of the snapshot volume.<br>
+5. Click OK.<br>
+6. Upon completion, this message appears:<br>
+The selected snapshots have been disabled.<br>
+Deleting a Snapshot<br>
+Deleting a volume snapshot also deletes the snapshot reserve volume.<br>
+To delete a volume snapshot:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Snapshots.<br>
+The Snapshot Summary page appears.<br>
+3. Select the snapshot that you want to delete, which enables the Delete button.<br>
+4. Click Delete.<br>
+You are prompted to confirm the deleting of the snapshot volume.<br>
+5. Click OK.<br>
+6. Upon completion, this message appears:<br>
+The selected snapshots have been deleted.<br>
+<b>163</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=11></a>Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#4">Planning a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#6">Creating a Volume Snapshot</a><br>
+<br>
+<A href="snapshotss.html#9">Unmapping a Volume Snapshot</a><br>
+Snapshot Summary Page<br>
+This page displays information about all snapshots. Click a snapshot name to view<br>the details and additional information for that snapshot.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The snapshot name.<br>
+Base Volume<br>
+The base volume associated with this snapshot.<br>
+Reserve Volume<br>
+The reserve volume associated with this snapshot.<br>
+Creation Date<br>
+The date this snapshot was created.<br>
+Percent Full<br>
+The percentage of the snapshot reserve volume that is being used.<br>
+WWN<br>
+The world-wide name of the snapshot.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>164</b><br>
+<hr>
+<A name=12></a>Snapshot Details Page<br>
+This page displays details for the selected snapshot, including available additional<br>information.<br>
+<b>TABLE 1-1</b><br>
+Storage Snapshot Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The snapshot name.<br>
+Base Volume<br>
+The base volume associated with this snapshot.<br>
+Reserve Volume<br>
+The reserve volume associated with this snapshot.<br>
+Creation Date<br>
+The date this snapshot was created.<br>
+Percent Full<br>
+The percentage of the snapshot reserve volume that is being used.<br>
+WWN<br>
+The world-wide name of the snapshot.<br>
+The additional information table provides related information. Click an item to see its details.<br>
+<b>TABLE 1-2</b><br>
+Storage Pool Additional Information<br>
+<b>Type</b><br>
+<b>Number of Items</b><br>
+Volumes<br>
+The number of volumes in this pool.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+<b>165</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=13></a>Volume Additional Information -<br>Snapshot Summary Page<br>
+This page provides information about the snapshots associated with this volume.<br>
+<b>TABLE 1-3</b><br>
+Volume Additional Information - Snapshot Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the snapshot.<br>
+State<br>
+The current state of the volume:<br>· Mapped - The volume is mapped currently to one or more<br>
+snapshots.<br>
+· Free - The volume is free currently and unmapped by a snapshot.<br>
+Condition<br>
+The condition of the snapshot:<br>· Intact - The snapshot is operational currently.<br>· Broken - The snapshot is not operational currently.<br>· Degraded - The snapshot is degraded, and one or more input or<br>
+output data paths is not operating properly; however, the<br>redundant failover paths are still intact.<br>
+· Snapshot Reset - Removes an older snapshot and resnaps the<br>
+volume.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#4">Planning a Volume Snapshot</a><br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>166</b><br>
+<hr>
+<A name=14></a>Volume Additional Information -<br>Mapping Summary Page<br>
+This page shows the initiators mapped to this volume.<br>
+<b>TABLE 1-4</b><br>
+Volume Additional Information - Mapping Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the mapped initiator.<br>
+Status<br>
+The current mapping status: Online or Offline.<br>
+LUN<br>
+The mapped LUN number.<br>
+Permissions<br>
+The current permissions: Read-only or Write, Read.<br>
+Related Topics<br>
+<br>
+<A href="volumes.pdf">About Volumes</a><br>
+<br>
+<A href="volumes.pdf">Managing Volumes</a><br>
+Volume Additional Information -<br>Snapshot Details Page<br>
+This page shows details for the selected volume snapshot.<br>
+<b>TABLE 1-5</b><br>
+Volume Additional Information - Snapshot Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the volume snapshot.<br>
+Description<br>
+A description of the volume snapshot.<br>
+State<br>
+The state of the snapshot:<br>· Free - The snapshot is unmapped.<br>· Mapped - The snapshot is mapped to one or more volumes.<br>
+<b>167</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name=15></a><b>TABLE 1-5</b><br>
+Volume Additional Information - Snapshot Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Condition<br>
+The current condition of the volume snapshot: Broken, Intact, or<br>N/A for a volume with a Missing state.<br>
+Storage Domain<br>
+The storage domain with which this volume snapshot is associated.<br>
+WWN<br>
+The WWN of the volume snapshot.<br>
+The Additional Information table provides related information. Click an item to see its details.<br>
+<b>TABLE 1-6</b><br>
+Snapshot additional information<br>
+<b>Type</b><br>
+<b>Number of Items</b><br>
+Mapped Initiators<br>
+The number of initiators associated with this snapshot.<br>
+Related Topics<br>
+<br>
+<A href="snapshotss.html#1">About Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#3">Managing Volume Snapshots</a><br>
+<br>
+<A href="snapshotss.html#4">Planning a Volume Snapshot</a><br>
+Snapshot Additional Information -<br>Mapping Summary Page<br>
+This page shows the initiators associated with this volume snapshot.<br>
+<b>TABLE 1-7</b><br>
+Snapshot Additional Information - Mapping Summary<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The name of the mapped initiator.<br>
+Status<br>
+The current mapping status: Online or Offline.<br>
+LUN<br>
+The mapped LUN number.<br>
+Permissions<br>
+The current permissions: Read-only or Write, Read.<br>
+Chapter 1<br>
+Configuring Volume Snapshots<br>
+<b>168</b><br>
+<hr>
+<A name=16></a>Related Topics<br>
+<br>
+<A href="volumes.pdf">About Volumes</a><br>
+<br>
+<A href="volumes.pdf">Managing Volumes</a><br>
+<b>169</b><br>
+6120 Array Online Help ·<br>
+<hr>
+<A name="outline"></a><h1>Document Outline</h1>
+<ul><li><A href="snapshotss.html#1">Configuring Volume Snapshots</A>
+<ul><li><A href="snapshotss.html#1">About Volume Snapshots</A>
+<ul><li><A href="snapshotss.html#2">Related Topics</A>
+</ul><li><A href="snapshotss.html#3">Managing Volume Snapshots</A>
+<ul><li><A href="snapshotss.html#3">Related Topics</A>
+<li><A href="snapshotss.html#3">Enabling Volume Snapshots</A>
+<li><A href="snapshotss.html#4">Displaying Volume Snapshot Information</A>
+<ul><li><A href="snapshotss.html#4">Related Topics</A>
+</ul><li><A href="snapshotss.html#4">Planning a Volume Snapshot</A>
+<li><A href="snapshotss.html#6">Related Topics</A>
+<li><A href="snapshotss.html#6">Creating a Volume Snapshot</A>
+<ul><li><A href="snapshotss.html#7">Related Topics</A>
+</ul><li><A href="snapshotss.html#7">Resnapping a Volume</A>
+<ul><li><A href="snapshotss.html#7">Related Topics</A>
+</ul><li><A href="snapshotss.html#7">Copying a Snapshot</A>
+<li><A href="snapshotss.html#8">Mapping a Volume Snapshot to a Host or Host Group</A>
+<li><A href="snapshotss.html#9">Unmapping a Volume Snapshot</A>
+<ul><li><A href="snapshotss.html#9">Related Topics</A>
+</ul><li><A href="snapshotss.html#9">Disabling a Volume Snapshot</A>
+<li><A href="snapshotss.html#10">Deleting a Snapshot</A>
+<ul><li><A href="snapshotss.html#11">Related Topics</A>
+<li><A href="snapshotss.html#11">Related Topics</A>
+<li><A href="snapshotss.html#12">Related Topics</A>
+<li><A href="snapshotss.html#13">Related Topics</A>
+<li><A href="snapshotss.html#14">Related Topics</A>
+<li><A href="snapshotss.html#15">Related Topics</A>
+<li><A href="snapshotss.html#16">Related Topics</A>
+</ul></ul></ul></ul><hr>
+</BODY>
+</HTML>

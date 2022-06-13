@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<A name=1></a>C H A P T E R <b>10</b><br>
+Configuring Storage Pools<br>
+See the following topics for information on storage pools:<br>
+<br>
+<A href="storage_poolss.html#1">About Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+About Storage Pools<br>
+A storage environment can be divided into storage pools. Each pool uses a profile<br>that allows the storage pool to meet specific I/O requirements. Each array has a<br>default pool that uses the default profile which implements RAID-5 storage<br>characteristics. The default pool can be used in the most common storage<br>requirements. The array also provides a set of storage profiles that satisfy certain<br>I/O requirements. If none of the factory profiles are suitable for your site's needs,<br>you can create a custom storage profile. When you create a new storage pool, you<br>assign a specific profile to it.<br>
+To see the current storage pools, go to the Storage Pool Summary page, as described<br>in <A href="storage_poolss.html#3">Displaying Pool Information</a>.<br>
+Reconfiguring a storage pool consists of removing the storage pool and then creating<br>a new storage pool. Storage pools can be expanded dynamically so you can remove<br>unused virtual disks and add new virtual disks.<br>
+<b>Note ­ </b>You cannot delete storage pools that have volumes associated with them.<br>Removing the storage pool destroys all stored data in the pool. The data can be<br>restored from backup after new storage pools are added, but it is far easier to avoid<br>the difficulty in the first place.<br>
+<b>80</b><br>
+<hr>
+<A name=2></a>Related Topics<br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<br>
+<A href="virtual_disks.pdf">About Virtual Disks</a><br>
+<br>
+<A href="volumes.pdf">About Volumes</a><br>
+Managing Storage Pools<br>
+You can create, modify, and delete storage pools, and you can add storage to a pool.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#1">About Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#3">Displaying Pool Information</a><br>
+<br>
+<A href="storage_poolss.html#4">Creating a Storage Pool</a><br>
+<br>
+Adding Storage to a Pool<br>
+<br>
+<A href="storage_poolss.html#4">Modifying a Storage Pool</a><br>
+<br>
+<A href="storage_poolss.html#5">Deleting a Storage Pool</a><br>
+<b>81</b><br>
+6130 Array Online Help ·<br>
+<hr>
+<A name=3></a>Displaying Pool Information<br>
+You can display summary and detail information on existing storage pools. You can<br>also display summary information about the virtual disks and volumes that are<br>associated with each pool.<br>
+To display information on pools:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Pools.<br>
+The Storage Pool Summary page is displayed.<br>
+3. Click a pool name for detailed information on that pool.<br>
+The Storage Pool Details page for the selected pool is displayed.<br>
+4. Go to additional information and click any item for additional information<br>
+associated with the selected pool.<br>
+The Summary page for the selected item is displayed.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#4">Creating a Storage Pool</a><br>
+<br>
+Adding Storage to a Pool<br>
+Chapter 10<br>
+Configuring Storage Pools<br>
+<b>82</b><br>
+<hr>
+<A name=4></a>Creating a Storage Pool<br>
+To create a storage pool:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Pools &gt; New.<br>
+The Create New Storage Pool page is displayed.<br>
+3. Specify a name for the new pool, using a maximum of 12 characters.<br>
+Valid characters include 0 to 9, A to Z and a to z, _ (underscore), and - (dash).<br>
+4. Select the storage profile with which you want to associate this pool, and click<br>
+OK.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<br>
+Adding Storage to a Pool<br>
+<br>
+<A href="storage_poolss.html#4">Modifying a Storage Pool</a><br>
+Modifying a Storage Pool<br>
+To modify a storage pool:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Pools.<br>
+The Storage Pool Summary page is displayed.<br>
+3. Click the storage pool that you want to modify.<br>
+The Storage Pool Details page for that pool is displayed.<br>
+4. Make the appropriate modifications, and click Save. If you have not yet clicked<br>
+Save, you can click Reset to restore the previously configured values.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#4">Creating a Storage Pool</a><br>
+<br>
+Adding Storage to a Pool<br>
+<br>
+<A href="storage_poolss.html#5">Deleting a Storage Pool</a><br>
+<b>83</b><br>
+6130 Array Online Help ·<br>
+<hr>
+<A name=5></a>Deleting a Storage Pool<br>
+You cannot delete storage pools that have volumes associated with them.<br>
+To delete a storage pool:<br>
+1. Go to the Sun Web Console page and click SE6130 Configuration Service.<br>
+2. Click Storage &gt; Logical &gt; Pools.<br>
+3. Click the check box for the storage pool that you want to delete. This enables the<br>
+Delete button.<br>
+4. Click Delete. The selected storage pool disappears from the Storage Pools table.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#4">Creating a Storage Pool</a><br>
+<br>
+Adding Storage to a Pool<br>
+<br>
+<A href="storage_poolss.html#4">Modifying a Storage Pool</a><br>
+Chapter 10<br>
+Configuring Storage Pools<br>
+<b>84</b><br>
+<hr>
+<A name=6></a>Storage Pool Summary Page<br>
+This page displays information about all storage pools. Click a pool name to view<br>the details and additional information for that pool.<br>
+You can filter the pool listings by domain, thereby showing only those pools that are<br>associated with that domain. Setting the filter configures the domain filter for<br>volumes, virtual disks, pools, and initiator summary pages.<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The storage pool name.<br>
+Storage Profile<br>
+The storage profile associated with this pool.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#1">About Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<b>85</b><br>
+6130 Array Online Help ·<br>
+<hr>
+<A name=7></a>Storage Pool Details Page<br>
+This page displays storage details for the selected pool, including available<br>additional information.<br>
+<b>TABLE 10-1</b><br>
+Storage Pool Details<br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The storage pool name.<br>
+Storage Profile<br>
+The storage profile associated with this pool.<br>
+Configured Capacity<br>
+The storage capacity for the volumes that are configured for this<br>pool.<br>
+Available Capacity<br>
+The remaining storage capacity that is available for creating<br>volumes from this pool.<br>
+The additional information table provides related information. Click an item to see its details.<br>
+<b>TABLE 10-2</b><br>
+Storage Pool Additional Information<br>
+<b>Type</b><br>
+<b>Number of Items</b><br>
+Volumes<br>
+The number of volumes in this pool.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#1">About Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+Chapter 10<br>
+Configuring Storage Pools<br>
+<b>86</b><br>
+<hr>
+<A name=8></a>Storage Pool Additional Information -<br>Volume Summary Page<br>
+This page shows the volumes in the specified pool.<br>
+<b>TABLE 10-3</b><br>
+<b>Field</b><br>
+<b>Indicates</b><br>
+Name<br>
+The volume name.<br>
+Type<br>
+The volume types are:<br>· Standard - A standard volume.<br>· Snapshot - A snapshot volume contains the current volume<br>
+snapshots.<br>
+· Repository - A repository volume contains all exisiting volumes.<br>· Source - A source volume for a snapshot.<br>· Target - A target volume is where you want to save the snapshot.<br>
+Virtual Disk<br>
+The virtual disk that is associated with this volume.<br>
+Pool<br>
+The storage pool associated with this volume.<br>
+Capacity<br>
+The storage capacity that is allocated to this volume.<br>The capacity is the usable size of the volume for data. You might<br>need additional capacity for a snapshot reserve.<br>
+Related Topics<br>
+<br>
+<A href="storage_poolss.html#1">About Storage Pools</a><br>
+<br>
+<A href="storage_poolss.html#2">Managing Storage Pools</a><br>
+<b>87</b><br>
+6130 Array Online Help ·<br>
+<hr>
+<A name="outline"></a><h1>Document Outline</h1>
+<ul><li><A href="storage_poolss.html#1">Configuring Storage Pools</A>
+<ul><li><A href="storage_poolss.html#1">About Storage Pools</A>
+<ul><li><A href="storage_poolss.html#2">Related Topics</A>
+</ul><li><A href="storage_poolss.html#2">Managing Storage Pools</A>
+<ul><li><A href="storage_poolss.html#2">Related Topics</A>
+<li><A href="storage_poolss.html#3">Displaying Pool Information</A>
+<ul><li><A href="storage_poolss.html#3">Related Topics</A>
+</ul><li><A href="storage_poolss.html#4">Creating a Storage Pool</A>
+<ul><li><A href="storage_poolss.html#4">Related Topics</A>
+</ul><li><A href="storage_poolss.html#4">Modifying a Storage Pool</A>
+<ul><li><A href="storage_poolss.html#4">Related Topics</A>
+</ul><li><A href="storage_poolss.html#5">Deleting a Storage Pool</A>
+<ul><li><A href="storage_poolss.html#5">Related Topics</A>
+<li><A href="storage_poolss.html#6">Related Topics</A>
+<li><A href="storage_poolss.html#7">Related Topics</A>
+<li><A href="storage_poolss.html#8">Related Topics</A>
+</ul></ul></ul></ul><hr>
+</BODY>
+</HTML>

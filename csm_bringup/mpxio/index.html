@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+<div style="text-align: center;"><small><span style="font-weight: bold;"></span></small><span
+ style="font-weight: bold;"><big><big>MPXio Driver Stack - SAN
+Foundation Kit (SFK)<br>
+</big></big></span>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: left;"><br>
+To leverage the greatest advantage from the CSM, it is useful to
+utilize multipathing. This way, if one path has a fault, the other can
+continue and data integrity is preserved.<br>
+<br>
+This section of the Bringup page will attempt to allow a person to
+verify MPXio is installed and working properly on the Customer or lab
+machine.<br>
+<br>
+Currently, the SAN Foundation Kit is experimental and under development.<br>
+<br>
+One can get the latest SFK here: <a class="moz-txt-link-freetext"
+ href="http://katana.central:8080/Binaries/SFS_Software/Beta/s9/sfk_6.5/">http://katana.central:8080/Binaries/SFS_Software/Beta/s9/sfk_6.5<br>
+<br>
+</a>Check for new SFK betas by browsing the directory here: <a
+ href="http://katana.central:8080/Binaries/SFS_Software/Beta/s9/">http://katana.central:8080/Binaries/SFS_Software/Beta/s9/<br>
+<br>
+</a>Before installilng, it may be useful to refresh on some of the
+conceptual foundational components installed by the SAN Foundation kit.
+These include the <a href="leadville_stack.pdf">Leadville driver stack</a>
+inplemented by the&nbsp; <a href="leadville_features.ps">Leadville
+architecture</a> and finally the <a href="mpxio_toi.pdf">MPXio features</a>.<br>
+<br>
+<br>
+<span style="text-decoration: underline;">Installing the SFK:<br>
+<br>
+<br>
+</span><span style="text-decoration: underline;"><span
+ style="text-decoration: underline;"></span></span>Installation of the
+SFK version 6.5.2 can be tricky.<br>
+<br>
+Once the tar file is obtained, untar it to a directory you have
+created. Be aware of a certain patch called Q959651-02. On most
+systems, running the installation script will return a code 24 whilst
+choking on patch Q959651-02. One can use the patchadd program to try to
+install the patch Q959651-02 manually. Invoking patchadd manually for
+patch Q959651-02 will show it depends on another patch already
+installed. Trying to remove that patch tells of another needing backing
+out before. There are dependencies at least three levels deep.<br>
+<br>
+Typically, the "install_it" script is run and <span
+ style="font-weight: bold; text-decoration: underline;">if</span> it
+runs to completion successfully, then the SFK stack is assumed to be <span
+ style="text-decoration: underline;">successfully installed</span>.
+Note - at the end of the install, the install_it script attempts to run
+patch_pro. Patch pro will install correctly, but will then identify
+patches to install and fail at installing the suggested patches. This
+may be due to the experimental nature of the SFK. In any event, when
+the install_it script offers to install and run patch_pro, say no and
+consider the installation successful.<br>
+<br>
+To see a sample install with a lot of problems with patch Q959651-02
+and eventually installing successfully, please see <a
+ href="logOfsfk6.5.2Install.txt">sfk_6_5_2 install session log</a>.<br>
+<br>
+Chris Seibel in&nbsp;Marlborough, MA ran into these <a
+ href="WorkingConfigurations.sxw">configuration challenges</a>
+installing the 6.5.2 SFK and seeing MPxIO storage on the CSM<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<br>
+</div>
+</div>
+</body>
+</html>
